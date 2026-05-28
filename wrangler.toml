@@ -1,0 +1,7 @@
+name = "still-haze-df92"
+account_id = "279c4ddaa75fffb12092818f94bbdc26"
+compatibility_date = "2025-05-28"
+
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
