@@ -16,6 +16,7 @@ interface Props {
   setCosts: (c: Costs) => void;
   optimalAge: number;
   onUseOptimal: () => void;
+  simplified?: boolean;
 }
 
 export function ControlsPanel(props: Props) {
@@ -34,6 +35,7 @@ export function ControlsPanel(props: Props) {
     setCosts,
     optimalAge,
     onUseOptimal,
+    simplified = false,
   } = props;
 
   return (
@@ -77,7 +79,7 @@ export function ControlsPanel(props: Props) {
       </div>
 
       <div className="panel">
-        <h2>Raie ja intress</h2>
+        <h2>{simplified ? "Raievanus" : "Raie ja intress"}</h2>
         <div className="field">
           <div className="field-row">
             <span className="field-label">Raievanus (millal raiuda)</span>
@@ -91,27 +93,33 @@ export function ControlsPanel(props: Props) {
             value={rotationAge}
             onChange={(e) => setRotationAge(Number(e.target.value))}
           />
-          <button className="optimal-btn" onClick={onUseOptimal}>
-            Vali parim raievanus: {optimalAge} a
-          </button>
+          {!simplified && (
+            <button className="optimal-btn" onClick={onUseOptimal}>
+              Vali parim raievanus: {optimalAge} a
+            </button>
+          )}
         </div>
 
-        <div className="field">
-          <div className="field-row">
-            <span className="field-label">Intressimäär (raha ajaväärtus)</span>
-            <span className="field-value">{(discountRate * 100).toFixed(1)}%</span>
+        {!simplified && (
+          <div className="field">
+            <div className="field-row">
+              <span className="field-label">Intressimäär (raha ajaväärtus)</span>
+              <span className="field-value">{(discountRate * 100).toFixed(1)}%</span>
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={6}
+              step={0.1}
+              value={discountRate * 100}
+              onChange={(e) => setDiscountRate(Number(e.target.value) / 100)}
+            />
           </div>
-          <input
-            type="range"
-            min={0}
-            max={6}
-            step={0.1}
-            value={discountRate * 100}
-            onChange={(e) => setDiscountRate(Number(e.target.value) / 100)}
-          />
-        </div>
+        )}
       </div>
 
+      {!simplified && (
+      <>
       <div className="panel">
         <h2>Puidu hinnad (€/m³)</h2>
         <PriceSlider
@@ -156,6 +164,8 @@ export function ControlsPanel(props: Props) {
           onChange={(v) => setCosts({ ...costs, harvestPerM3: v })}
         />
       </div>
+      </>
+      )}
     </div>
   );
 }

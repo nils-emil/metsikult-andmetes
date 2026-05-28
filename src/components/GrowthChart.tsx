@@ -31,9 +31,13 @@ const tooltip = makeTooltip(
 export function GrowthChart({
   data,
   rotationAge,
+  showRotationMark = true,
+  showMai = true,
 }: {
   data: Point[];
-  rotationAge: number;
+  rotationAge?: number;
+  showRotationMark?: boolean;
+  showMai?: boolean;
 }) {
   return (
     <div className="chart-wrap tall">
@@ -75,15 +79,17 @@ export function GrowthChart({
             fill="url(#volFill)"
             isAnimationActive={false}
           />
-          <Line
-            yAxisId="inc"
-            type="monotone"
-            dataKey="mai"
-            stroke="#d4a373"
-            strokeWidth={2}
-            dot={false}
-            isAnimationActive={false}
-          />
+          {showMai && (
+            <Line
+              yAxisId="inc"
+              type="monotone"
+              dataKey="mai"
+              stroke="#d4a373"
+              strokeWidth={2}
+              dot={false}
+              isAnimationActive={false}
+            />
+          )}
           <Line
             yAxisId="inc"
             type="monotone"
@@ -94,14 +100,16 @@ export function GrowthChart({
             dot={false}
             isAnimationActive={false}
           />
-          <ReferenceLine
-            x={rotationAge}
-            yAxisId="vol"
-            stroke="#f0f3ef"
-            strokeOpacity={0.55}
-            strokeDasharray="2 4"
-            label={{ value: `Raiering: ${rotationAge}a`, fill: "#ecf3ef", fontSize: 11, position: "top" }}
-          />
+          {showRotationMark && rotationAge != null && (
+            <ReferenceLine
+              x={rotationAge}
+              yAxisId="vol"
+              stroke="#f0f3ef"
+              strokeOpacity={0.55}
+              strokeDasharray="2 4"
+              label={{ value: `Raiering: ${rotationAge}a`, fill: "#ecf3ef", fontSize: 11, position: "top" }}
+            />
+          )}
         </ComposedChart>
       </ResponsiveContainer>
     </div>
