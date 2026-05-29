@@ -1189,3 +1189,230 @@ table.compare tr.highlight td:first-child {
     font-size: 11px;
   }
 }
+
+.sim-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sim-scenarios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sim-scenario-row {
+  display: grid;
+  grid-template-columns: 14px 90px 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.sim-scenario-label {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.sim-scenario-value {
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  min-width: 100px;
+  text-align: right;
+}
+
+.sim-unit {
+  color: var(--text-mute);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.sim-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.sim-dot-lg {
+  width: 12px;
+  height: 12px;
+}
+
+.sim-transport {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-top: 1px dashed var(--border);
+  padding-top: 14px;
+}
+
+.sim-btn {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  transition: background 0.15s, border-color 0.15s, transform 0.05s;
+}
+
+.sim-btn:hover:not(:disabled) {
+  background: #20302a;
+  border-color: var(--accent-dim);
+}
+
+.sim-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sim-btn-primary {
+  background: var(--accent);
+  color: #0d1411;
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(74, 222, 128, 0.25);
+}
+
+.sim-btn-primary:hover:not(:disabled) {
+  background: #6dec9d;
+  border-color: #6dec9d;
+}
+
+.sim-scrub {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sim-scrub-label {
+  font-size: 12px;
+  color: var(--text-mute);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  min-width: 110px;
+}
+
+.sim-scrub input[type="range"] {
+  flex: 1;
+}
+
+.sim-hint {
+  font-size: 11.5px;
+  color: var(--text-mute);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.sim-tabs-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.sim-tabs {
+  display: inline-flex;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.sim-tab {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.sim-tab:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.sim-tab-active {
+  background: var(--panel-2);
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.sim-clip-warn {
+  margin-top: 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.45);
+  color: var(--danger);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.sim-card-extra {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.sim-card-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sim-card-row strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.sim-card-row-total strong {
+  color: var(--accent);
+}
+
+.sim-tabs-hint {
+  align-self: center;
+  font-size: 11.5px;
+}
+
+@media (max-width: 720px) {
+  .sim-scenario-row {
+    grid-template-columns: 14px 1fr auto;
+    grid-template-rows: auto auto;
+    row-gap: 4px;
+  }
+  .sim-scenario-row input[type="range"] {
+    grid-column: 1 / -1;
+  }
+  .sim-scrub {
+    width: 100%;
+  }
+  .sim-tabs-row {
+    flex-direction: column;
+  }
+}

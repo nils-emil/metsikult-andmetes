@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { LandingPage } from "./pages/LandingPage";
-import { CalculatorPage } from "./pages/CalculatorPage";
 import { TodoPage } from "./pages/TodoPage";
 import { Story01Growth } from "./pages/lumberjack/Story01Growth";
 import { Story02StandAges } from "./pages/lumberjack/Story02StandAges";
+import { Story03Simulation } from "./pages/lumberjack/Story03Simulation";
 import { StoryDock } from "./pages/lumberjack/StoryDock";
 
 function useHashRoute(): string {
@@ -41,7 +41,7 @@ function App() {
   if (hash === "#/raidur/3") {
     return (
       <>
-        <CalculatorPage />
+        <Story03Simulation />
         <StoryDock currentIndex={2} />
       </>
     );
