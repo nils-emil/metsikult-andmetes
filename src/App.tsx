@@ -4,6 +4,7 @@ import { TodoPage } from "./pages/TodoPage";
 import { Story01Growth } from "./pages/lumberjack/Story01Growth";
 import { Story02StandAges } from "./pages/lumberjack/Story02StandAges";
 import { Story03Simulation } from "./pages/lumberjack/Story03Simulation";
+import { Story04Strategy } from "./pages/lumberjack/Story04Strategy";
 import { StoryDock } from "./pages/lumberjack/StoryDock";
 
 function useHashRoute(): string {
@@ -43,6 +44,14 @@ function App() {
       <>
         <Story03Simulation />
         <StoryDock currentIndex={2} />
+      </>
+    );
+  }
+  if (hash === "#/raidur/4") {
+    return (
+      <>
+        <Story04Strategy />
+        <StoryDock currentIndex={3} />
       </>
     );
   }
