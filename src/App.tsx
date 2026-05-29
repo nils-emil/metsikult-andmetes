@@ -5,6 +5,7 @@ import { Story01Growth } from "./pages/lumberjack/Story01Growth";
 import { Story02StandAges } from "./pages/lumberjack/Story02StandAges";
 import { Story03Simulation } from "./pages/lumberjack/Story03Simulation";
 import { Story04HotTopics } from "./pages/lumberjack/Story04HotTopics";
+import { Story04Strategy } from "./pages/lumberjack/Story04Strategy";
 import { StoryDock } from "./pages/lumberjack/StoryDock";
 
 function useHashRoute(): string {
@@ -51,6 +52,7 @@ function App() {
     return (
       <>
         <Story04HotTopics />
+        <Story04Strategy />
         <StoryDock currentIndex={3} />
       </>
     );
