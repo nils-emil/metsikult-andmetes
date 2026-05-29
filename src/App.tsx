@@ -11,6 +11,7 @@ import { Story02SpeciesAge } from "./pages/loomad/Story02SpeciesAge";
 import { Story03Succession } from "./pages/loomad/Story03Succession";
 import { Story04Conservation } from "./pages/loomad/Story04Conservation";
 import { LoomadDock } from "./pages/loomad/LoomadDock";
+import { SynthesisPage } from "./pages/synthesis/SynthesisPage";
 
 function useHashRoute(): string {
   const [hash, setHash] = useState(() => window.location.hash || "#/");
@@ -99,6 +100,9 @@ function App() {
         <LoomadDock currentIndex={3} />
       </>
     );
+  }
+  if (hash === "#/sild") {
+    return <SynthesisPage />;
   }
   return <LandingPage />;
 }

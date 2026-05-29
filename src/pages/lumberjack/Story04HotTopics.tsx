@@ -102,6 +102,15 @@ export function Story04HotTopics() {
             </div>
           ))}
         </div>
+
+        <div className="panel">
+          <p className="story-takeaway">
+            <strong>Kaks vaadet kohtuvad:</strong> raidur näeb tulu, loom näeb
+            elupaika. Pane mõlemad ühele skaalale ja otsusta ise, kus on õige
+            raievanus — <a href="#/sild">Otsusta ise: kaks vaadet, üks
+            raievanus</a>.
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -50,7 +50,8 @@ export function Story04Conservation() {
           tegevuskavast. Loomavaade lõpeb siin, kuid raidurivaade jätkab
           strateegia 12 prioriteetse probleemiga — vaata <a href="#/raidur/4">
           Raiduri lugu 4
-          </a>.
+          </a>. Mõlemad vaated kohtuvad lõpuks ühel skaalal:{" "}
+          <a href="#/sild">Otsusta ise: kaks vaadet, üks raievanus</a>.
         </p>
       </div>
     </div>
