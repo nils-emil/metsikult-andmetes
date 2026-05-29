@@ -1,0 +1,34 @@
+{
+  "pealkiri": "Eesti puistute pindala jagunemine 10-aastastesse vanuseklassidesse enamuspuuliigi järgi",
+  "allikas": {
+    "nimi": "Statistiline metsainventuur (SMI) 2023, tabel 13 — Puistute jagunemine vanuseklassidesse enamuspuuliigi järgi (10 a vanuseklassid)",
+    "valdaja": "Keskkonnaagentuur",
+    "url": "https://keskkonnaportaal.ee/sites/default/files/Teemad/Mets/SMI%20tulemused%202023/SMI2023_tulemused_graafikud.pdf",
+    "tabeli_kuupaev": "2024-06-07",
+    "ulatus": "Kõik puistud kokku (riigimetsad + teised valdajad)"
+  },
+  "yhik": "tuhat hektarit (tuh ha)",
+  "kokku_tuh_ha": 2122.1,
+  "keskmine_vanus_a": 55,
+  "suurim_klass": "51-60 a",
+  "vanuseklassid": ["≤10", "11-20", "21-30", "31-40", "41-50", "51-60", "61-70", "71-80", "81-90", "91-100", "101-110", "111-120", "121-130", "131-140", "141+"],
+  "puuliigid": {
+    "Mänd":      [17.0, 23.9, 29.3, 34.4, 43.0, 64.7, 79.3, 94.7, 73.4, 60.1, 34.8, 30.6, 17.6, 15.7, 32.6],
+    "Kuusk":     [26.6, 39.1, 34.9, 44.0, 56.3, 40.0, 30.2, 29.8, 19.4, 12.4, 8.6, 7.4, 3.3, 3.6, 2.5],
+    "Kask":      [67.8, 59.4, 84.5, 71.4, 73.8, 90.9, 86.4, 58.9, 27.4, 11.1, 5.1, 1.2, 0.3, 0.0, 0.3],
+    "Haab":      [33.1, 20.2, 12.7, 5.6, 8.3, 15.1, 19.1, 12.2, 6.3, 2.6, 1.7, 0.8, 0.0, 0.0, 0.0],
+    "Sanglepp":  [16.2, 9.3, 7.1, 7.5, 10.1, 12.4, 10.2, 6.8, 4.9, 1.9, 0.8, 0.2, 0.0, 0.0, 0.0],
+    "Hall lepp": [55.3, 48.2, 37.0, 34.2, 20.3, 14.8, 5.2, 0.3, 0.0, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0],
+    "Teised":    [2.7, 4.4, 6.6, 3.9, 2.0, 1.8, 1.9, 2.7, 1.6, 2.0, 2.0, 1.2, 0.5, 0.0, 0.3]
+  },
+  "kokku_klassiti_tuh_ha": [218.8, 204.6, 212.1, 201.0, 213.8, 239.7, 232.2, 205.3, 133.0, 90.3, 53.0, 41.5, 22.1, 19.5, 35.4],
+  "puuliikide_varvid": {
+    "Mänd": "#185FA5",
+    "Kuusk": "#0F6E56",
+    "Kask": "#97C459",
+    "Haab": "#D85A30",
+    "Sanglepp": "#534AB7",
+    "Hall lepp": "#BA7517",
+    "Teised": "#888780"
+  }
+}
