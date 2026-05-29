@@ -1,0 +1,100 @@
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { makeTooltip } from "./Tooltip";
+import {
+  SPECIES_ORDER,
+  STAND_AGES,
+  type SpeciesName,
+  type StandAgesRow,
+} from "../data/standAges";
+
+const fmtArea = (v: number) => `${v.toFixed(1)} tuh ha`;
+
+export function StandAgesChart({ data }: { data: StandAgesRow[] }) {
+  const colors = STAND_AGES.puuliikide_varvid;
+
+  const tooltipRows: {
+    name: string;
+    key: string;
+    color: string;
+    format: (v: number) => string;
+  }[] = [...SPECIES_ORDER].reverse().map((name) => ({
+    name,
+    key: name,
+    color: colors[name],
+    format: fmtArea,
+  }));
+  tooltipRows.push({
+    name: "Kokku",
+    key: "total",
+    color: "#ecf3ef",
+    format: fmtArea,
+  });
+
+  const tooltip = makeTooltip(
+    (label) => `Vanuseklass ${label} a`,
+    tooltipRows,
+  );
+
+  return (
+    <div className="chart-wrap tall">
+      <ResponsiveContainer>
+        <BarChart
+          data={data}
+          margin={{ top: 10, right: 20, left: 0, bottom: 18 }}
+        >
+          <CartesianGrid
+            stroke="#263a32"
+            strokeDasharray="3 4"
+            vertical={false}
+          />
+          <XAxis
+            dataKey="klass"
+            tick={{ fill: "#a4b7af", fontSize: 11 }}
+            stroke="#355044"
+            interval={0}
+            label={{
+              value: "Vanuseklass (aastat)",
+              position: "insideBottom",
+              offset: -8,
+              fill: "#6f857c",
+              fontSize: 11,
+            }}
+          />
+          <YAxis
+            tick={{ fill: "#a4b7af", fontSize: 11 }}
+            stroke="#355044"
+            label={{
+              value: "tuh ha",
+              angle: -90,
+              position: "insideLeft",
+              fill: "#6f857c",
+              fontSize: 11,
+              dy: 20,
+            }}
+          />
+          <Tooltip
+            content={tooltip as never}
+            cursor={{ fill: "#ffffff", fillOpacity: 0.04 }}
+          />
+          {SPECIES_ORDER.map((name: SpeciesName) => (
+            <Bar
+              key={name}
+              dataKey={name}
+              stackId="stand"
+              fill={colors[name]}
+              isAnimationActive={false}
+            />
+          ))}
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
