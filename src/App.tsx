@@ -4,6 +4,7 @@ import { Story01Growth } from "./pages/lumberjack/Story01Growth";
 import { Story02StandAges } from "./pages/lumberjack/Story02StandAges";
 import { Story03Simulation } from "./pages/lumberjack/Story03Simulation";
 import { Story04HotTopics } from "./pages/lumberjack/Story04HotTopics";
+import { Story04Strategy } from "./pages/lumberjack/Story04Strategy";
 import { StoryDock } from "./pages/lumberjack/StoryDock";
 import { Story01Layers } from "./pages/loomad/Story01Layers";
 import { Story02SpeciesAge } from "./pages/loomad/Story02SpeciesAge";
@@ -56,6 +57,14 @@ function App() {
       <>
         <Story04HotTopics />
         <StoryDock currentIndex={3} />
+      </>
+    );
+  }
+  if (hash === "#/raidur/5") {
+    return (
+      <>
+        <Story04Strategy />
+        <StoryDock currentIndex={4} />
       </>
     );
   }

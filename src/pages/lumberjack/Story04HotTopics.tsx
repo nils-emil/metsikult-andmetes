@@ -24,7 +24,7 @@ export function Story04HotTopics() {
     <div className="app">
       <header className="header">
         <div>
-          <h1 className="title">Eesti metsa kuumimad teemad</h1>
+          <h1 className="title">Eesti metsa olulised teemad</h1>
           <p className="subtitle">
             Lugu 4 / 4 — seitse vaidlust, mille üle praegu Eesti metsade kohta
             kõige rohkem debatti käib. Iga teema kõrval on reaalsetel andmetel
