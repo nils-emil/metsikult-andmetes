@@ -56,7 +56,6 @@ function App() {
     return (
       <>
         <Story04HotTopics />
-        <Story04Strategy />
         <StoryDock currentIndex={3} />
       </>
     );
