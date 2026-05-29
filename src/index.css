@@ -427,9 +427,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .legend-chip-active {
-  border-color: var(--accent-dim) !important;
-  background: rgba(182, 210, 74, 0.08) !important;
-  color: var(--text);
+  border-color: var(--accent) !important;
+  background: rgba(182, 210, 74, 0.18) !important;
+  color: var(--accent-hi);
+  font-weight: 600;
+  box-shadow: 0 0 0 1px var(--accent-dim);
 }
 
 .table-wrap {
