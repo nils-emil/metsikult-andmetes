@@ -392,6 +392,37 @@ input[type="range"]::-moz-range-thumb {
   border-radius: 2px;
 }
 
+.bar-clickable .recharts-bar-rectangle,
+.bar-clickable .recharts-rectangle {
+  cursor: pointer;
+}
+
+.legend-chip {
+  background: none;
+  color: inherit;
+  font: inherit;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: default;
+}
+
+.legend-chip-clickable {
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.legend-chip-clickable:hover {
+  border-color: var(--border-strong);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.legend-chip-active {
+  border-color: var(--accent-dim) !important;
+  background: rgba(74, 222, 128, 0.08) !important;
+  color: var(--text);
+}
+
 .table-wrap {
   overflow-x: auto;
 }

@@ -1,17 +1,30 @@
+import { useState } from "react";
 import { StandAgesChart } from "../../components/StandAgesChart";
+import { SpeciesRotationCompare } from "../../components/SpeciesRotationCompare";
 import {
   SPECIES_ORDER,
   STAND_AGES,
   standAgesRows,
+  type SpeciesName,
 } from "../../data/standAges";
+import type { SpeciesId } from "../../forestry/species";
 
 const fmtArea1 = (n: number) =>
   Number.isFinite(n) ? n.toLocaleString("et-EE", { maximumFractionDigits: 1 }) : "—";
+
+const SPECIES_MAP: Partial<Record<SpeciesName, SpeciesId>> = {
+  Kuusk: "spruce",
+  Mänd: "pine",
+  Kask: "birch",
+};
 
 export function Story02StandAges() {
   const rows = standAgesRows();
   const colors = STAND_AGES.puuliikide_varvid;
   const legendOrder = [...SPECIES_ORDER].reverse();
+
+  const [selected, setSelected] = useState<SpeciesName | null>(null);
+  const selectedId = selected ? SPECIES_MAP[selected] : undefined;
 
   return (
     <div className="app">
@@ -52,18 +65,46 @@ export function Story02StandAges() {
         <div className="panel">
           <div className="section-title">
             <h2>Pindala vanuseklassiti, jagunemine puuliigiti</h2>
+            <span className="hint">
+              Vajuta puuliigile (Kuusk, Mänd, Kask), et näha raievanuse võrdlust
+            </span>
           </div>
-          <StandAgesChart data={rows} />
+          <StandAgesChart
+            data={rows}
+            selectedSpecies={selected}
+            onSelectSpecies={setSelected}
+          />
           <div className="legend">
-            {legendOrder.map((name) => (
-              <span className="legend-chip" key={name}>
-                <span
-                  className="legend-dot"
-                  style={{ background: colors[name] }}
-                />
-                {name}
-              </span>
-            ))}
+            {legendOrder.map((name) => {
+              const clickable = SPECIES_MAP[name] != null;
+              const isSelected = selected === name;
+              const dim =
+                !clickable ? 0.55 : selected && !isSelected ? 0.55 : 1;
+              return (
+                <button
+                  type="button"
+                  className={
+                    "legend-chip" +
+                    (clickable ? " legend-chip-clickable" : "") +
+                    (isSelected ? " legend-chip-active" : "")
+                  }
+                  key={name}
+                  style={{ opacity: dim }}
+                  onClick={
+                    clickable
+                      ? () => setSelected(isSelected ? null : name)
+                      : undefined
+                  }
+                  disabled={!clickable}
+                >
+                  <span
+                    className="legend-dot"
+                    style={{ background: colors[name] }}
+                  />
+                  {name}
+                </button>
+              );
+            })}
           </div>
           <p className="story-takeaway" style={{ marginTop: 12 }}>
             Allikas:{" "}
@@ -73,6 +114,13 @@ export function Story02StandAges() {
             — {STAND_AGES.allikas.valdaja}, {STAND_AGES.allikas.tabeli_kuupaev}.
           </p>
         </div>
+
+        {selectedId && (
+          <SpeciesRotationCompare
+            speciesId={selectedId}
+            onClose={() => setSelected(null)}
+          />
+        )}
       </div>
     </div>
   );

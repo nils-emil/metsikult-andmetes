@@ -205,6 +205,27 @@ export function optimalRotation(input: Omit<ScenarioInputs, "rotationAge">): {
   return { age: bestAge, metric: bestMetric };
 }
 
+/**
+ * Biologically optimal rotation: the age that maximizes mean annual increment
+ * (MAI). Independent of prices and discounting — purely a function of how
+ * volume grows with age. Coincides with the MAI=CAI crossover point.
+ */
+export function biologicalRotation(
+  speciesId: SpeciesId,
+  siteId: SiteId,
+): { age: number; mai: number } {
+  let bestAge = 60;
+  let bestMai = -Infinity;
+  for (let t = 20; t <= 180; t += 1) {
+    const m = maiAtAge(t, speciesId, siteId);
+    if (m > bestMai) {
+      bestMai = m;
+      bestAge = t;
+    }
+  }
+  return { age: bestAge, mai: bestMai };
+}
+
 /** Generate a series of {age, ...} points for charting. */
 export function growthSeries(
   speciesId: SpeciesId,
