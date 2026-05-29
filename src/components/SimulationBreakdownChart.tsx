@@ -3,6 +3,7 @@ import {
   BarChart,
   CartesianGrid,
   Cell,
+  ReferenceLine,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -18,6 +19,10 @@ import {
   type SimulationStep,
 } from "../forestry/simulation";
 import { STAND_AGES, type SpeciesName } from "../data/standAges";
+import {
+  HISTORICAL_DECADES,
+  SIM_BASE_YEAR,
+} from "../data/historicalForest";
 
 export type BreakdownView = "species" | "assortment" | "class";
 
@@ -62,6 +67,15 @@ const CLASS_COLORS = [
   "#6f3b1c",
 ];
 
+const SIM_DECADE_OFFSETS = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+interface Row {
+  year: number;
+  historical: boolean;
+  simYear: number | null;
+  [field: string]: number | boolean | null;
+}
+
 export function SimulationBreakdownChart({
   run,
   currentYear,
@@ -73,39 +87,83 @@ export function SimulationBreakdownChart({
   scenarioColors,
 }: Props) {
   const colors = STAND_AGES.puuliikide_varvid;
-
-  const decades = useMemo(() => {
-    const out: number[] = [];
-    for (let y = 0; y <= 100; y += 10) out.push(y);
-    return out;
-  }, []);
-
   const currentDecade = Math.round(currentYear / 10) * 10;
 
-  const data = useMemo(() => {
-    return decades.map((year) => {
-      const step = run?.[year];
-      const row: Record<string, number | string> = { year };
-      if (!step) return row;
+  const data = useMemo<Row[]>(() => {
+    const out: Row[] = [];
+    const ref = run?.[0];
+
+    const fillRow = (
+      row: Row,
+      bySpecies: Record<SpeciesName, number>,
+      byAssortment: { pulp: number; saw: number; veneer: number },
+      byClass: number[],
+    ) => {
       if (viewMode === "species") {
-        for (const name of SPECIES_NAMES) {
-          row[name] = step.bySpecies[name];
-        }
+        for (const name of SPECIES_NAMES) row[name] = bySpecies[name];
       } else if (viewMode === "assortment") {
-        row.pulp = step.byAssortment.pulp;
-        row.saw = step.byAssortment.saw;
-        row.veneer = step.byAssortment.veneer;
+        row.pulp = byAssortment.pulp;
+        row.saw = byAssortment.saw;
+        row.veneer = byAssortment.veneer;
       } else {
-        for (let i = 0; i < NUM_CLASSES; i++) {
-          row[`c${i}`] = step.byClass[i];
-        }
+        for (let i = 0; i < NUM_CLASSES; i++) row[`c${i}`] = byClass[i];
       }
-      return row;
-    });
-  }, [run, decades, viewMode]);
+    };
+
+    if (ref && ref.total > 0) {
+      // Historical: scale the year-0 simulation breakdown by the ratio of
+      // historical-total / current-total. Assumes broadly similar species,
+      // assortment and age composition through the last century — a coarse
+      // approximation flagged in the source note.
+      for (const h of HISTORICAL_DECADES) {
+        const ratio = h.totalMm3 / ref.total;
+        const row: Row = {
+          year: h.year,
+          historical: true,
+          simYear: null,
+        };
+        const bySpecies = {} as Record<SpeciesName, number>;
+        for (const n of SPECIES_NAMES) bySpecies[n] = ref.bySpecies[n] * ratio;
+        const byAssortment = {
+          pulp: ref.byAssortment.pulp * ratio,
+          saw: ref.byAssortment.saw * ratio,
+          veneer: ref.byAssortment.veneer * ratio,
+        };
+        const byClass = ref.byClass.map((v) => v * ratio);
+        fillRow(row, bySpecies, byAssortment, byClass);
+        out.push(row);
+      }
+    }
+
+    for (const off of SIM_DECADE_OFFSETS) {
+      const step = run?.[off];
+      const row: Row = {
+        year: SIM_BASE_YEAR + off,
+        historical: false,
+        simYear: off,
+      };
+      if (step) {
+        fillRow(row, step.bySpecies, step.byAssortment, step.byClass);
+      }
+      out.push(row);
+    }
+
+    return out;
+  }, [run, viewMode]);
+
+  const cellOpacity = (row: Row): number => {
+    if (row.historical) return 1;
+    if (row.simYear === null) return 0.35;
+    return row.simYear <= currentDecade ? 1 : 0.35;
+  };
 
   const tooltip = useMemo(() => {
     const formatV = (v: number) => `${fmtNumber(v, 1)} M m³`;
+    const labelFn = (label: number | string) => {
+      const y = Number(label);
+      const era = y < SIM_BASE_YEAR ? " (ajalooline)" : "";
+      return `Aasta ${y}${era}`;
+    };
     if (viewMode === "species") {
       const rows = [...SPECIES_NAMES].reverse().map((name: SpeciesName) => ({
         name,
@@ -113,10 +171,10 @@ export function SimulationBreakdownChart({
         color: colors[name],
         format: formatV,
       }));
-      return makeTooltip((label) => `Aasta ${label}`, rows);
+      return makeTooltip(labelFn, rows);
     }
     if (viewMode === "assortment") {
-      return makeTooltip((label) => `Aasta ${label}`, [
+      return makeTooltip(labelFn, [
         {
           name: ASSORTMENT_LABELS.veneer,
           key: "veneer",
@@ -146,8 +204,10 @@ export function SimulationBreakdownChart({
         format: formatV,
       });
     }
-    return makeTooltip((label) => `Aasta ${label}`, rows);
+    return makeTooltip(labelFn, rows);
   }, [viewMode, colors]);
+
+  const xTicks = [1960, 1980, 2000, 2020, 2040, 2060, 2080, 2100, 2120];
 
   return (
     <div>
@@ -225,8 +285,10 @@ export function SimulationBreakdownChart({
               dataKey="year"
               tick={{ fill: "#a4b7af", fontSize: 11 }}
               stroke="#355044"
+              ticks={xTicks}
+              interval={0}
               label={{
-                value: "Aastakümme",
+                value: "Aasta",
                 position: "insideBottom",
                 offset: -8,
                 fill: "#6f857c",
@@ -249,6 +311,18 @@ export function SimulationBreakdownChart({
               content={tooltip as never}
               cursor={{ fill: "#ffffff", fillOpacity: 0.04 }}
             />
+            <ReferenceLine
+              x={SIM_BASE_YEAR}
+              stroke="#ecf3ef"
+              strokeOpacity={0.5}
+              strokeDasharray="2 4"
+              label={{
+                value: "Simulatsiooni algus",
+                fill: "#a4b7af",
+                fontSize: 10,
+                position: "top",
+              }}
+            />
             {viewMode === "species" &&
               SPECIES_NAMES.map((name: SpeciesName) => (
                 <Bar
@@ -258,11 +332,8 @@ export function SimulationBreakdownChart({
                   fill={colors[name]}
                   isAnimationActive={false}
                 >
-                  {decades.map((y) => (
-                    <Cell
-                      key={y}
-                      fillOpacity={y <= currentDecade ? 1 : 0.35}
-                    />
+                  {data.map((row) => (
+                    <Cell key={row.year} fillOpacity={cellOpacity(row)} />
                   ))}
                 </Bar>
               ))}
@@ -281,11 +352,8 @@ export function SimulationBreakdownChart({
                   fill={b.fill}
                   isAnimationActive={false}
                 >
-                  {decades.map((y) => (
-                    <Cell
-                      key={y}
-                      fillOpacity={y <= currentDecade ? 1 : 0.35}
-                    />
+                  {data.map((row) => (
+                    <Cell key={row.year} fillOpacity={cellOpacity(row)} />
                   ))}
                 </Bar>
               ))}
@@ -298,11 +366,8 @@ export function SimulationBreakdownChart({
                   fill={color}
                   isAnimationActive={false}
                 >
-                  {decades.map((y) => (
-                    <Cell
-                      key={y}
-                      fillOpacity={y <= currentDecade ? 1 : 0.35}
-                    />
+                  {data.map((row) => (
+                    <Cell key={row.year} fillOpacity={cellOpacity(row)} />
                   ))}
                 </Bar>
               ))}

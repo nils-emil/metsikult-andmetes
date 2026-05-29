@@ -217,6 +217,14 @@ export function Story03Simulation() {
             teised liigid kasutavad arukase kasvuparameetreid lähendusena.
             Vanuseklassi promotsioon: 10% aastas.
             <br />
+            <strong>Ajalooline kontekst (1960–2010):</strong> aastakümnete
+            kogutagavara ligikaudsed väärtused Keskkonnaagentuuri SMI
+            aastaraamatutest ja varasemate metsainventuuride kokkuvõtetest.
+            Liikide, sortimentide ja vanuseklasside jaotus on ajaloolistes
+            aastakümnetes lähendatud 2023. aasta proportsioonidega, kuna
+            täielikku ajaloolist aegrida pole avalikult kättesaadav. Mõeldud
+            hariva kontekstina, mitte täpse aegreana.
+            <br />
             <strong>Seaduslik piirang:</strong> uuendusraie toimub ainult
             küpsusvanuse saavutanud puistutest (Metsaseadus § 29) — mänd 90 a,
             kuusk 70 a, kask 60 a, sanglepp ja teised 60 a, haab 40 a, hall
