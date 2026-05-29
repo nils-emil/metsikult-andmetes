@@ -84,8 +84,9 @@ export function SimulationBreakdownChart({
 
   const data = useMemo(() => {
     return decades.map((year) => {
-      const step = run[year];
+      const step = run?.[year];
       const row: Record<string, number | string> = { year };
+      if (!step) return row;
       if (viewMode === "species") {
         for (const name of SPECIES_NAMES) {
           row[name] = step.bySpecies[name];

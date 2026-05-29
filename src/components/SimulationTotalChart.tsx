@@ -53,9 +53,9 @@ export function SimulationTotalChart({
         year: y,
       };
       if (y <= upTo) {
-        row.s0 = valueFor(runs[0][y], viewMode);
-        row.s1 = valueFor(runs[1][y], viewMode);
-        row.s2 = valueFor(runs[2][y], viewMode);
+        if (runs[0]?.[y]) row.s0 = valueFor(runs[0][y], viewMode);
+        if (runs[1]?.[y]) row.s1 = valueFor(runs[1][y], viewMode);
+        if (runs[2]?.[y]) row.s2 = valueFor(runs[2][y], viewMode);
       }
       out.push(row);
     }

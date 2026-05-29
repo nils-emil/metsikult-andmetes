@@ -80,8 +80,11 @@ export function Story03Simulation() {
     setCurrentYear(0);
   };
 
-  const yearIdx = Math.min(100, Math.floor(currentYear));
-  const start0 = runs[0][0].total;
+  const yearIdx = Math.min(
+    100,
+    Math.max(0, Math.floor(currentYear)),
+  );
+  const start0 = runs[0]?.[0]?.total ?? 0;
 
   return (
     <div className="app">
@@ -121,7 +124,8 @@ export function Story03Simulation() {
         <div className="story-cards story-cards-3">
           {[0, 1, 2].map((idx) => {
             const i = idx as 0 | 1 | 2;
-            const step = runs[i][yearIdx];
+            const step = runs[i]?.[yearIdx];
+            if (!step) return null;
             const standing = step.total;
             const cumRaie = step.cumulativeHarvested;
             const kogumaht = standing + cumRaie;
