@@ -2,6 +2,7 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  Cell,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -74,13 +75,12 @@ export function SimulationBreakdownChart({
   const colors = STAND_AGES.puuliikide_varvid;
 
   const decades = useMemo(() => {
-    const upTo = Math.floor(currentYear / 10) * 10;
     const out: number[] = [];
-    for (let y = 0; y <= 100; y += 10) {
-      if (y <= upTo) out.push(y);
-    }
+    for (let y = 0; y <= 100; y += 10) out.push(y);
     return out;
-  }, [currentYear]);
+  }, []);
+
+  const currentDecade = Math.round(currentYear / 10) * 10;
 
   const data = useMemo(() => {
     return decades.map((year) => {
@@ -257,30 +257,38 @@ export function SimulationBreakdownChart({
                   stackId="sim"
                   fill={colors[name]}
                   isAnimationActive={false}
-                />
+                >
+                  {decades.map((y) => (
+                    <Cell
+                      key={y}
+                      fillOpacity={y <= currentDecade ? 1 : 0.35}
+                    />
+                  ))}
+                </Bar>
               ))}
-            {viewMode === "assortment" && (
-              <>
+            {viewMode === "assortment" &&
+              (
+                [
+                  { key: "pulp", fill: ASSORTMENT_COLORS.pulp },
+                  { key: "saw", fill: ASSORTMENT_COLORS.saw },
+                  { key: "veneer", fill: ASSORTMENT_COLORS.veneer },
+                ] as const
+              ).map((b) => (
                 <Bar
-                  dataKey="pulp"
+                  key={b.key}
+                  dataKey={b.key}
                   stackId="sim"
-                  fill={ASSORTMENT_COLORS.pulp}
+                  fill={b.fill}
                   isAnimationActive={false}
-                />
-                <Bar
-                  dataKey="saw"
-                  stackId="sim"
-                  fill={ASSORTMENT_COLORS.saw}
-                  isAnimationActive={false}
-                />
-                <Bar
-                  dataKey="veneer"
-                  stackId="sim"
-                  fill={ASSORTMENT_COLORS.veneer}
-                  isAnimationActive={false}
-                />
-              </>
-            )}
+                >
+                  {decades.map((y) => (
+                    <Cell
+                      key={y}
+                      fillOpacity={y <= currentDecade ? 1 : 0.35}
+                    />
+                  ))}
+                </Bar>
+              ))}
             {viewMode === "class" &&
               CLASS_COLORS.map((color, i) => (
                 <Bar
@@ -289,7 +297,14 @@ export function SimulationBreakdownChart({
                   stackId="sim"
                   fill={color}
                   isAnimationActive={false}
-                />
+                >
+                  {decades.map((y) => (
+                    <Cell
+                      key={y}
+                      fillOpacity={y <= currentDecade ? 1 : 0.35}
+                    />
+                  ))}
+                </Bar>
               ))}
           </BarChart>
         </ResponsiveContainer>
