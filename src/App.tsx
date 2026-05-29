@@ -3,6 +3,7 @@ import { LandingPage } from "./pages/LandingPage";
 import { CalculatorPage } from "./pages/CalculatorPage";
 import { TodoPage } from "./pages/TodoPage";
 import { Story01Growth } from "./pages/lumberjack/Story01Growth";
+import { Story02StandAges } from "./pages/lumberjack/Story02StandAges";
 import { StoryDock } from "./pages/lumberjack/StoryDock";
 
 function useHashRoute(): string {
@@ -32,8 +33,16 @@ function App() {
   if (hash === "#/raidur/2") {
     return (
       <>
-        <CalculatorPage />
+        <Story02StandAges />
         <StoryDock currentIndex={1} />
+      </>
+    );
+  }
+  if (hash === "#/raidur/3") {
+    return (
+      <>
+        <CalculatorPage />
+        <StoryDock currentIndex={2} />
       </>
     );
   }
