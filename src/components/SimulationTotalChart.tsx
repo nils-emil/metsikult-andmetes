@@ -116,7 +116,7 @@ export function SimulationTotalChart({
             margin={{ top: 10, right: 28, left: 0, bottom: 8 }}
           >
             <CartesianGrid
-              stroke="#263a32"
+              stroke="#2E4C40"
               strokeDasharray="3 4"
               vertical={false}
             />
@@ -125,35 +125,35 @@ export function SimulationTotalChart({
               type="number"
               domain={[0, 100]}
               ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
-              tick={{ fill: "#a4b7af", fontSize: 11 }}
-              stroke="#355044"
+              tick={{ fill: "#A8B2A4", fontSize: 11 }}
+              stroke="#456554"
               label={{
                 value: "Aastad",
                 position: "insideBottom",
                 offset: -2,
-                fill: "#6f857c",
+                fill: "#7E8A7B",
                 fontSize: 11,
               }}
             />
             <YAxis
-              tick={{ fill: "#a4b7af", fontSize: 11 }}
-              stroke="#355044"
+              tick={{ fill: "#A8B2A4", fontSize: 11 }}
+              stroke="#456554"
               label={{
                 value: `${VIEW_LABELS[viewMode]} (M m³)`,
                 angle: -90,
                 position: "insideLeft",
-                fill: "#6f857c",
+                fill: "#7E8A7B",
                 fontSize: 11,
                 dy: 60,
               }}
             />
             <Tooltip
               content={tooltip as never}
-              cursor={{ stroke: "#4ade80", strokeOpacity: 0.4 }}
+              cursor={{ stroke: "#B6D24A", strokeOpacity: 0.4 }}
             />
             <ReferenceLine
               x={currentYear}
-              stroke="#ecf3ef"
+              stroke="#F0EBDE"
               strokeOpacity={0.45}
               strokeDasharray="2 4"
             />

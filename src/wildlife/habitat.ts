@@ -69,7 +69,7 @@ const SUITABILITY_COLOR: Record<Suitability, string> = {
   0: "#243029",
   1: "#5a6a3a",
   2: "#9ec96f",
-  3: "#4ade80",
+  3: "#B6D24A",
 };
 
 const SUITABILITY_LABEL: Record<Suitability, string> = {

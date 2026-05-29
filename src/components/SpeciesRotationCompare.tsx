@@ -107,7 +107,7 @@ export function SpeciesRotationCompare({
             margin={{ top: 24, right: 28, left: 0, bottom: 8 }}
           >
             <CartesianGrid
-              stroke="#263a32"
+              stroke="#2E4C40"
               strokeDasharray="3 4"
               vertical={false}
             />
@@ -118,31 +118,31 @@ export function SpeciesRotationCompare({
               ticks={[
                 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140,
               ]}
-              tick={{ fill: "#a4b7af", fontSize: 11 }}
-              stroke="#355044"
+              tick={{ fill: "#A8B2A4", fontSize: 11 }}
+              stroke="#456554"
               label={{
                 value: "Vanus (aastat)",
                 position: "insideBottom",
                 offset: -2,
-                fill: "#6f857c",
+                fill: "#7E8A7B",
                 fontSize: 11,
               }}
             />
             <YAxis
-              tick={{ fill: "#a4b7af", fontSize: 11 }}
-              stroke="#355044"
+              tick={{ fill: "#A8B2A4", fontSize: 11 }}
+              stroke="#456554"
               label={{
                 value: "m³/ha/a",
                 angle: -90,
                 position: "insideLeft",
-                fill: "#6f857c",
+                fill: "#7E8A7B",
                 fontSize: 11,
                 dy: 30,
               }}
             />
             <Tooltip
               content={tooltip as never}
-              cursor={{ stroke: "#4ade80", strokeOpacity: 0.4 }}
+              cursor={{ stroke: "#B6D24A", strokeOpacity: 0.4 }}
             />
             <Line
               type="monotone"
@@ -174,11 +174,11 @@ export function SpeciesRotationCompare({
             />
             <ReferenceLine
               x={ecoAge}
-              stroke="#4ade80"
+              stroke="#B6D24A"
               strokeDasharray="2 4"
               label={{
                 value: `Majanduslik ${ecoAge}a`,
-                fill: "#4ade80",
+                fill: "#B6D24A",
                 fontSize: 11,
                 position: "top",
               }}
@@ -211,7 +211,7 @@ export function SpeciesRotationCompare({
           Bioloogiline raievanus
         </span>
         <span className="legend-chip">
-          <span className="legend-dot" style={{ background: "#4ade80" }} />
+          <span className="legend-dot" style={{ background: "#B6D24A" }} />
           Majanduslik raievanus
         </span>
         <span className="legend-chip">

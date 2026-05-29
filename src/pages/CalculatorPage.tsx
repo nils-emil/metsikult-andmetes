@@ -185,7 +185,7 @@ export function CalculatorPage() {
               <GrowthChart data={series} rotationAge={rotationAge} />
               <div className="legend">
                 <span className="legend-chip">
-                  <span className="legend-dot" style={{ background: "#4ade80" }} />
+                  <span className="legend-dot" style={{ background: "#B6D24A" }} />
                   Puidu kogus (m³/ha)
                 </span>
                 <span className="legend-chip">
@@ -280,7 +280,7 @@ export function CalculatorPage() {
               />
               <div className="legend">
                 <span className="legend-chip">
-                  <span className="legend-dot" style={{ background: "#4ade80" }} />
+                  <span className="legend-dot" style={{ background: "#B6D24A" }} />
                   Tänane kasum (üks raiering)
                 </span>
                 {discountRate > 0.001 && (
@@ -437,7 +437,7 @@ function ModeToggle<T extends string>({
           onClick={() => onChange(o.id)}
           style={{
             background: value === o.id ? "var(--accent-dim)" : "transparent",
-            color: value === o.id ? "#0d1411" : "var(--text-dim)",
+            color: value === o.id ? "#10211A" : "var(--text-dim)",
             border: "none",
             padding: "4px 10px",
             borderRadius: 6,

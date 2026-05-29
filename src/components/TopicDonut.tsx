@@ -31,7 +31,7 @@ export function TopicDonut({
               innerRadius="55%"
               outerRadius="82%"
               paddingAngle={2}
-              stroke="#0d1411"
+              stroke="#10211A"
               strokeWidth={2}
               isAnimationActive={false}
             >

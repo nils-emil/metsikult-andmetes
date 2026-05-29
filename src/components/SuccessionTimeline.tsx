@@ -19,7 +19,7 @@ interface SuccessionTimelineProps {
 }
 
 const BAR_COLORS = {
-  elupaik: "var(--habitat, #4ade80)",
+  elupaik: "var(--habitat, #B6D24A)",
   varjualune: "var(--shelter, #93b86a)",
   toidubaas: "var(--food, #d4a373)",
 } as const;

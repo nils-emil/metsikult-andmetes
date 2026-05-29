@@ -17,7 +17,7 @@ interface StatusPeriod {
 }
 
 const SERIES = [
-  { key: "soodne", name: "Soodne", color: "#4ade80" },
+  { key: "soodne", name: "Soodne", color: "#B6D24A" },
   { key: "ebasoodne", name: "Ebasoodne", color: "#d4a373" },
   { key: "halb", name: "Halb", color: "#f87171" },
 ] as const;
@@ -43,19 +43,19 @@ export function TopicStackedBars({ periods }: { periods: StatusPeriod[] }) {
             layout="vertical"
             margin={{ top: 10, right: 20, left: 8, bottom: 10 }}
           >
-            <CartesianGrid stroke="#263a32" strokeDasharray="3 4" horizontal={false} />
+            <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" horizontal={false} />
             <XAxis
               type="number"
               domain={[0, 100]}
-              tick={{ fill: "#a4b7af", fontSize: 11 }}
-              stroke="#355044"
+              tick={{ fill: "#A8B2A4", fontSize: 11 }}
+              stroke="#456554"
               tickFormatter={(v) => `${v}%`}
             />
             <YAxis
               type="category"
               dataKey="period"
-              tick={{ fill: "#a4b7af", fontSize: 12 }}
-              stroke="#355044"
+              tick={{ fill: "#A8B2A4", fontSize: 12 }}
+              stroke="#456554"
               width={120}
             />
             <Tooltip

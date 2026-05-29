@@ -50,7 +50,7 @@ const ASSORTMENT_LABELS = {
 
 // Sequential young (green) → old (warm brown) palette for the 15 classes.
 const CLASS_COLORS = [
-  "#4ade80",
+  "#B6D24A",
   "#5bd07a",
   "#76c374",
   "#8fb56a",
@@ -277,32 +277,32 @@ export function SimulationBreakdownChart({
             margin={{ top: 10, right: 20, left: 0, bottom: 18 }}
           >
             <CartesianGrid
-              stroke="#263a32"
+              stroke="#2E4C40"
               strokeDasharray="3 4"
               vertical={false}
             />
             <XAxis
               dataKey="year"
-              tick={{ fill: "#a4b7af", fontSize: 11 }}
-              stroke="#355044"
+              tick={{ fill: "#A8B2A4", fontSize: 11 }}
+              stroke="#456554"
               ticks={xTicks}
               interval={0}
               label={{
                 value: "Aasta",
                 position: "insideBottom",
                 offset: -8,
-                fill: "#6f857c",
+                fill: "#7E8A7B",
                 fontSize: 11,
               }}
             />
             <YAxis
-              tick={{ fill: "#a4b7af", fontSize: 11 }}
-              stroke="#355044"
+              tick={{ fill: "#A8B2A4", fontSize: 11 }}
+              stroke="#456554"
               label={{
                 value: "M m³",
                 angle: -90,
                 position: "insideLeft",
-                fill: "#6f857c",
+                fill: "#7E8A7B",
                 fontSize: 11,
                 dy: 20,
               }}
@@ -313,12 +313,12 @@ export function SimulationBreakdownChart({
             />
             <ReferenceLine
               x={SIM_BASE_YEAR}
-              stroke="#ecf3ef"
+              stroke="#F0EBDE"
               strokeOpacity={0.5}
               strokeDasharray="2 4"
               label={{
                 value: "Simulatsiooni algus",
-                fill: "#a4b7af",
+                fill: "#A8B2A4",
                 fontSize: 10,
                 position: "top",
               }}

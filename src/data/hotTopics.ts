@@ -60,7 +60,7 @@ export const HOT_TOPICS: HotTopic[] = [
       unit: "% metsamaast",
       segments: [
         { label: "Majandusmets", value: 70, color: "#d4a373" },
-        { label: "Kaitstav mets", value: 30, color: "#4ade80" },
+        { label: "Kaitstav mets", value: 30, color: "#B6D24A" },
       ],
     },
     allikas: {
@@ -109,7 +109,7 @@ export const HOT_TOPICS: HotTopic[] = [
       unit: "% kasumist",
       segments: [
         { label: "Välismaistele omanikele", value: 72.5, color: "#f87171" },
-        { label: "Jääb Eestisse", value: 27.5, color: "#4ade80" },
+        { label: "Jääb Eestisse", value: 27.5, color: "#B6D24A" },
       ],
     },
     allikas: {
@@ -172,7 +172,7 @@ export const HOT_TOPICS: HotTopic[] = [
       unit: "mln m³",
       yLabel: "mln m³",
       data: [
-        { label: "Riigimets", value: 4, color: "#4ade80" },
+        { label: "Riigimets", value: 4, color: "#B6D24A" },
         { label: "Era- ja muu mets", value: 7, color: "#d4a373" },
       ],
     },

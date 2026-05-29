@@ -66,20 +66,20 @@ export function AssortmentChart({
           stackOffset="none"
           margin={{ top: 10, right: 20, left: 0, bottom: 8 }}
         >
-          <CartesianGrid stroke="#263a32" strokeDasharray="3 4" vertical={false} />
+          <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" vertical={false} />
           <XAxis
             dataKey="age"
-            tick={{ fill: "#a4b7af", fontSize: 11 }}
-            stroke="#355044"
-            label={{ value: "Puistu vanus (aastat)", position: "insideBottom", offset: -2, fill: "#6f857c", fontSize: 11 }}
+            tick={{ fill: "#A8B2A4", fontSize: 11 }}
+            stroke="#456554"
+            label={{ value: "Puistu vanus (aastat)", position: "insideBottom", offset: -2, fill: "#7E8A7B", fontSize: 11 }}
           />
           <YAxis
-            tick={{ fill: "#a4b7af", fontSize: 11 }}
-            stroke="#355044"
+            tick={{ fill: "#A8B2A4", fontSize: 11 }}
+            stroke="#456554"
             domain={mode === "share" ? [0, 100] : ["auto", "auto"]}
-            label={{ value: keys.unit, angle: -90, position: "insideLeft", fill: "#6f857c", fontSize: 11, dy: 20 }}
+            label={{ value: keys.unit, angle: -90, position: "insideLeft", fill: "#7E8A7B", fontSize: 11, dy: 20 }}
           />
-          <Tooltip content={tooltip as never} cursor={{ stroke: "#4ade80", strokeOpacity: 0.4 }} />
+          <Tooltip content={tooltip as never} cursor={{ stroke: "#B6D24A", strokeOpacity: 0.4 }} />
           <Area
             type="monotone"
             stackId="1"
@@ -109,10 +109,10 @@ export function AssortmentChart({
           />
           <ReferenceLine
             x={rotationAge}
-            stroke="#f0f3ef"
+            stroke="#F0EBDE"
             strokeOpacity={0.55}
             strokeDasharray="2 4"
-            label={{ value: `${rotationAge}a`, fill: "#ecf3ef", fontSize: 11, position: "top" }}
+            label={{ value: `${rotationAge}a`, fill: "#F0EBDE", fontSize: 11, position: "top" }}
           />
         </AreaChart>
       </ResponsiveContainer>

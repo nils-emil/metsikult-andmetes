@@ -16,7 +16,7 @@ const STATUS_LABEL: Record<Indicator["status"], string> = {
 };
 
 const STATUS_COLOR: Record<Indicator["status"], string> = {
-  saavutatud: "#4ade80",
+  saavutatud: "#B6D24A",
   edenemas: "#d4a373",
   vajab_tegevust: "#f87171",
 };

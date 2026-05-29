@@ -16,7 +16,7 @@ interface DivPoint {
   value: number;
 }
 
-const SINK = "#4ade80"; // siduja (negatiivne)
+const SINK = "#B6D24A"; // siduja (negatiivne)
 const SOURCE = "#f87171"; // heitja (positiivne)
 
 export function TopicDivergingBars({
@@ -38,26 +38,26 @@ export function TopicDivergingBars({
             data={data}
             margin={{ top: 20, right: 20, left: 8, bottom: 10 }}
           >
-            <CartesianGrid stroke="#263a32" strokeDasharray="3 4" vertical={false} />
+            <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" vertical={false} />
             <XAxis
               dataKey="label"
-              tick={{ fill: "#a4b7af", fontSize: 12 }}
-              stroke="#355044"
+              tick={{ fill: "#A8B2A4", fontSize: 12 }}
+              stroke="#456554"
               interval={0}
             />
             <YAxis
-              tick={{ fill: "#a4b7af", fontSize: 11 }}
-              stroke="#355044"
+              tick={{ fill: "#A8B2A4", fontSize: 11 }}
+              stroke="#456554"
               label={{
                 value: unit,
                 angle: -90,
                 position: "insideLeft",
-                fill: "#6f857c",
+                fill: "#7E8A7B",
                 fontSize: 11,
                 dy: 30,
               }}
             />
-            <ReferenceLine y={0} stroke="#6f857c" strokeWidth={1.2} />
+            <ReferenceLine y={0} stroke="#7E8A7B" strokeWidth={1.2} />
             <Tooltip
               cursor={{ fill: "#ffffff", fillOpacity: 0.04 }}
               content={
@@ -86,7 +86,7 @@ export function TopicDivergingBars({
               <LabelList
                 dataKey="value"
                 position="top"
-                fill="#ecf3ef"
+                fill="#F0EBDE"
                 fontSize={12}
                 formatter={(value) => fmt(Number(value))}
               />

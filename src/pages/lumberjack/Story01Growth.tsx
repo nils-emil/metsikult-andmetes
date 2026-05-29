@@ -48,7 +48,7 @@ export function Story01Growth() {
           <GrowthChart data={series} showRotationMark={false} showMai={false} />
           <div className="legend">
             <span className="legend-chip">
-              <span className="legend-dot" style={{ background: "#4ade80" }} />
+              <span className="legend-dot" style={{ background: "#B6D24A" }} />
               Puidu kogus (m³/ha)
             </span>
             <span className="legend-chip">

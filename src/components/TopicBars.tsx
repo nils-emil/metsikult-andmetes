@@ -31,23 +31,23 @@ export function TopicBars({
     <div className="chart-wrap">
       <ResponsiveContainer>
         <BarChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 10 }}>
-          <CartesianGrid stroke="#263a32" strokeDasharray="3 4" vertical={false} />
+          <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" vertical={false} />
           <XAxis
             dataKey="label"
-            tick={{ fill: "#a4b7af", fontSize: 12 }}
-            stroke="#355044"
+            tick={{ fill: "#A8B2A4", fontSize: 12 }}
+            stroke="#456554"
             interval={0}
           />
           <YAxis
-            tick={{ fill: "#a4b7af", fontSize: 11 }}
-            stroke="#355044"
+            tick={{ fill: "#A8B2A4", fontSize: 11 }}
+            stroke="#456554"
             label={
               yLabel
                 ? {
                     value: yLabel,
                     angle: -90,
                     position: "insideLeft",
-                    fill: "#6f857c",
+                    fill: "#7E8A7B",
                     fontSize: 11,
                     dy: 20,
                   }
@@ -82,7 +82,7 @@ export function TopicBars({
             <LabelList
               dataKey="value"
               position="top"
-              fill="#ecf3ef"
+              fill="#F0EBDE"
               fontSize={12}
               formatter={(value) =>
                 Number(value).toLocaleString("et-EE", {

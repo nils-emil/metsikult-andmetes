@@ -15,7 +15,7 @@ import { STAND_AGES } from "../../data/standAges";
 const SCENARIO_LABELS: [string, string, string] = ["Madal", "Tänane", "Kõrge"];
 const SCENARIO_COLORS: [string, string, string] = [
   "#93b86a",
-  "#4ade80",
+  "#B6D24A",
   "#c47e3e",
 ];
 const DEFAULT_HARVESTS: [number, number, number] = [6, 12, 18];

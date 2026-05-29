@@ -47,7 +47,7 @@ export function ForestLayersDiagram({
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#1a2a26" />
-            <stop offset="100%" stopColor="#0d1411" />
+            <stop offset="100%" stopColor="#10211A" />
           </linearGradient>
         </defs>
         <rect x={0} y={0} width={800} height={460} fill="url(#sky)" />

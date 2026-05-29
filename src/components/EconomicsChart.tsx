@@ -19,7 +19,7 @@ interface Point {
 }
 
 const tooltip = makeTooltip((label) => `Raiering ${label} aastat`, [
-  { name: "NPV (üks raiering)", key: "npv", color: "#4ade80", format: fmtMoneyFull },
+  { name: "NPV (üks raiering)", key: "npv", color: "#B6D24A", format: fmtMoneyFull },
   { name: "LEV (Faustmann)", key: "lev", color: "#d4a373", format: fmtMoneyFull },
   { name: "Aastane ekvivalent", key: "annualEquivalent", color: "#c47e3e", format: fmtMoneyFull },
 ]);
@@ -39,22 +39,22 @@ export function EconomicsChart({
     <div className="chart-wrap tall">
       <ResponsiveContainer>
         <LineChart data={data} margin={{ top: 10, right: 28, left: 0, bottom: 8 }}>
-          <CartesianGrid stroke="#263a32" strokeDasharray="3 4" vertical={false} />
+          <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" vertical={false} />
           <XAxis
             dataKey="age"
-            tick={{ fill: "#a4b7af", fontSize: 11 }}
-            stroke="#355044"
+            tick={{ fill: "#A8B2A4", fontSize: 11 }}
+            stroke="#456554"
             label={{
               value: "Raiering (aastat)",
               position: "insideBottom",
               offset: -2,
-              fill: "#6f857c",
+              fill: "#7E8A7B",
               fontSize: 11,
             }}
           />
           <YAxis
-            tick={{ fill: "#a4b7af", fontSize: 11 }}
-            stroke="#355044"
+            tick={{ fill: "#A8B2A4", fontSize: 11 }}
+            stroke="#456554"
             tickFormatter={(v) => {
               const n = v as number;
               const abs = Math.abs(n);
@@ -63,12 +63,12 @@ export function EconomicsChart({
               return `€${Math.round(n)}`;
             }}
           />
-          <Tooltip content={tooltip as never} cursor={{ stroke: "#4ade80", strokeOpacity: 0.4 }} />
-          <ReferenceLine y={0} stroke="#6f857c" strokeOpacity={0.6} />
+          <Tooltip content={tooltip as never} cursor={{ stroke: "#B6D24A", strokeOpacity: 0.4 }} />
+          <ReferenceLine y={0} stroke="#7E8A7B" strokeOpacity={0.6} />
           <Line
             type="monotone"
             dataKey="npv"
-            stroke="#4ade80"
+            stroke="#B6D24A"
             strokeWidth={2}
             dot={false}
             isAnimationActive={false}
@@ -94,17 +94,17 @@ export function EconomicsChart({
           />
           <ReferenceLine
             x={rotationAge}
-            stroke="#f0f3ef"
+            stroke="#F0EBDE"
             strokeOpacity={0.55}
             strokeDasharray="2 4"
-            label={{ value: `valitud`, fill: "#ecf3ef", fontSize: 10, position: "top" }}
+            label={{ value: `valitud`, fill: "#F0EBDE", fontSize: 10, position: "top" }}
           />
           <ReferenceLine
             x={optimalAge}
-            stroke="#4ade80"
+            stroke="#B6D24A"
             strokeOpacity={0.7}
             strokeDasharray="4 2"
-            label={{ value: `optimum ${optimalAge}a`, fill: "#4ade80", fontSize: 10, position: "insideTopRight" }}
+            label={{ value: `optimum ${optimalAge}a`, fill: "#B6D24A", fontSize: 10, position: "insideTopRight" }}
           />
         </LineChart>
       </ResponsiveContainer>
