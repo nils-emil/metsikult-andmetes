@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { LandingPage } from "./pages/LandingPage";
-import { TodoPage } from "./pages/TodoPage";
 import { Story01Growth } from "./pages/lumberjack/Story01Growth";
 import { Story02StandAges } from "./pages/lumberjack/Story02StandAges";
 import { Story03Simulation } from "./pages/lumberjack/Story03Simulation";
 import { Story04Strategy } from "./pages/lumberjack/Story04Strategy";
 import { StoryDock } from "./pages/lumberjack/StoryDock";
+import { Story01Layers } from "./pages/loomad/Story01Layers";
+import { Story02SpeciesAge } from "./pages/loomad/Story02SpeciesAge";
+import { Story03Succession } from "./pages/loomad/Story03Succession";
+import { Story04Conservation } from "./pages/loomad/Story04Conservation";
+import { LoomadDock } from "./pages/loomad/LoomadDock";
 
 function useHashRoute(): string {
   const [hash, setHash] = useState(() => window.location.hash || "#/");
@@ -55,8 +59,37 @@ function App() {
       </>
     );
   }
-  if (hash === "#/loomad") {
-    return <TodoPage />;
+  if (hash === "#/loomad" || hash === "#/loomad/1") {
+    return (
+      <>
+        <Story01Layers />
+        <LoomadDock currentIndex={0} />
+      </>
+    );
+  }
+  if (hash === "#/loomad/2") {
+    return (
+      <>
+        <Story02SpeciesAge />
+        <LoomadDock currentIndex={1} />
+      </>
+    );
+  }
+  if (hash === "#/loomad/3") {
+    return (
+      <>
+        <Story03Succession />
+        <LoomadDock currentIndex={2} />
+      </>
+    );
+  }
+  if (hash === "#/loomad/4") {
+    return (
+      <>
+        <Story04Conservation />
+        <LoomadDock currentIndex={3} />
+      </>
+    );
   }
   return <LandingPage />;
 }
