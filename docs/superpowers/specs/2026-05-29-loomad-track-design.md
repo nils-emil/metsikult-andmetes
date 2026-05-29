@@ -32,7 +32,7 @@ The landing page already has a "Loomad" card pointing to `#/loomad`; that route 
 
 ## Routing & navigation
 
-- `src/App.tsx`: add four branches for `#/loomad/1` … `#/loomad/4`, plus a redirect: when hash is exactly `#/loomad`, navigate to `#/loomad/1`. Existing `TodoPage` import is removed.
+- `src/App.tsx`: add four branches that mirror Raidur's pattern exactly. The first branch matches **both** `#/loomad` and `#/loomad/1` (just like `#/raidur` and `#/raidur/1` both render `Story01Growth`). Branches 2–4 match `#/loomad/2` … `#/loomad/4`. Existing `TodoPage` import is removed in the same edit. **No explicit `useEffect` redirect** — that pattern would either fight the back button or require `replaceState`; matching both hashes in one branch is what the existing track does and is the lower-risk choice.
 - `src/pages/loomad/steps.ts`: new — same shape as `lumberjack/steps.ts` (`hash`, `label`).
 - `src/pages/loomad/LoomadDock.tsx`: new — same structure as `StoryDock.tsx`, reads `LOOMAD_STEPS`. Visually identical (reuses `.story-dock` CSS).
 - `src/pages/TodoPage.tsx`: delete (no other references).
@@ -94,7 +94,7 @@ export type SpeciesId =
   | "valgeselg_rahn"  // white-backed woodpecker — Dendrocopos leucotos
   | "ilves"           // Eurasian lynx — Lynx lynx
   | "pruunkaru"       // brown bear — Ursus arctos
-  | "pode"            // moose — Alces alces (note: "põder" → keep id ascii)
+  | "poder"           // moose — Alces alces (ascii id for põder)
   | "metsnugis"       // pine marten — Martes martes
   | "handkakk"        // Ural owl — Strix uralensis
   | "kanakull"        // northern goshawk — Accipiter gentilis
@@ -114,8 +114,11 @@ export interface Species {
   bodyMassKg: [number, number];  // [min, max] for adults
 }
 
-export const SPECIES: Record<SpeciesId, Species>;
+// Re-exported from data/wildlife.ts — this file declares types and the union only:
+export { WILDLIFE_SPECIES as SPECIES } from "../data/wildlife";
 ```
+
+**Emoji uniqueness**: each `Species.emoji` must be unique across the 12 species — no two birds get the same generic 🐦. This is a data-author rule, not a runtime check.
 
 ### Age classes
 ```ts
@@ -134,11 +137,12 @@ export interface AgeClass {
   color: string;        // CSS colour token or hex
 }
 
-export const AGE_CLASSES: Record<AgeClassId, AgeClass>;
-export const AGE_CLASS_ORDER: AgeClassId[];   // youngest → oldest
+// Like SPECIES, the const re-exports from data/wildlife.ts:
+export { WILDLIFE_AGE_CLASSES as AGE_CLASSES } from "../data/wildlife";
+export const AGE_CLASS_ORDER: AgeClassId[];   // youngest → oldest — declared here, it is structural, not data
 ```
 
-No functions in this file — it is data + types only, consumed verbatim.
+`species.ts` defines **types and the AGE_CLASS_ORDER constant** (which is structural and unlikely to change). All `Record<...>` data lives in `src/data/wildlife.ts` and is re-exported under domain names. This avoids the "the file can't both declare and re-export the same identifier" problem.
 
 ## Domain: `src/wildlife/habitat.ts`
 
@@ -192,9 +196,19 @@ Suitability values are curated, sourced primarily from Keskkonnaagentuuri ja EO�
 
 ### Post-clearcut succession (Story 3)
 
+**Year-axis semantics**: year 0 = **moment of clearcut** (just after the trees are felled). Year 0's recovery values are therefore low (elupaik ≈ 5, varjualune ≈ 0, toidubaas ≈ 10 — disturbed ground still has some seed bank), and `speciesPresent` at year 0 contains only species that tolerate open clearings.
+
+The **pre-cut baseline** — the species roster that was there immediately before the cut — is a **separate constant** in the dataset, not part of the frame timeline:
+
+```ts
+export const PRECUT_BASELINE: SpeciesId[];   // species in a mature stand pre-clearcut
+```
+
+This is what the Story 3 UI uses to compute the "puuduvad praegu" tray: `PRECUT_BASELINE \ speciesPresent(year)`. The per-frame `speciesLost` field is dropped — it's derivable.
+
 ```ts
 export interface SuccessionFrame {
-  year: number;          // 0..100, sampled at decade or finer for smoother slider
+  year: number;          // 0..100, sampled every 5 years (21 frames total)
   phase: string;         // Estonian short phase name, e.g. "Pioneeride faas"
   phaseDesc: string;     // 1 sentence
   recovery: {
@@ -204,15 +218,26 @@ export interface SuccessionFrame {
   };
   speciesPresent: SpeciesId[];
   speciesGained?: SpeciesId[];   // newly returned this frame, for highlighting
-  speciesLost?: SpeciesId[];     // last frame where this species was present
 }
 
 export const SUCCESSION_FRAMES: SuccessionFrame[];
-// One frame per year would be 101 entries; we will start with one per 5 years (21 frames)
-// and interpolate `recovery` values linearly in the UI between frames.
+// 21 frames at years 0, 5, 10, …, 100. The UI interpolates `recovery` between frames;
+// `speciesPresent` and `speciesGained` snap to the nearest frame ≤ year (no interpolation
+// of categorical fields).
+```
 
-export function frameAtYear(year: number): SuccessionFrame;  // nearest frame ≤ year
+**Function contracts:**
+
+```ts
+export function frameAtYear(year: number): SuccessionFrame;
+// Returns the frame with the largest `frame.year` ≤ clamp(year, 0, 100).
+// year < 0 → returns the year-0 frame. year > 100 → returns the year-100 frame.
+// Non-integer years are floored to the bracketing frame.
+
 export function interpolatedRecovery(year: number): SuccessionFrame["recovery"];
+// year is clamped to [0, 100]. If year falls exactly on a frame, returns that frame's
+// recovery verbatim. Otherwise linearly interpolates each of the three pillars between
+// the bracketing frames (year_lo ≤ year < year_hi). Categorical fields are NOT interpolated.
 ```
 
 Numbers are illustrative, not measured. Source-note will clearly say "valgustav lähend, mitte mõõdetud taastumiskõver". The shape (rapid early dip, slow climb, some species curves never reaching 100% inside 100 years) reflects the qualitative literature.
@@ -255,11 +280,12 @@ export const WILDLIFE_AGE_CLASSES: Record<AgeClassId, AgeClass> = { … };
 export const WILDLIFE_LAYERS: Record<LayerId, Layer> = { … };
 export const WILDLIFE_HABITAT: HabitatRow[] = [ … ];           // one entry per species
 export const WILDLIFE_SUCCESSION: SuccessionFrame[] = [ … ];   // 21 frames @ 5 a steps
+export const WILDLIFE_PRECUT_BASELINE: SpeciesId[] = [ … ];    // species present pre-clearcut in a mature stand
 export const WILDLIFE_TOOLS: ConservationTool[] = [ … ];
 export const WILDLIFE_SOURCES: { title: string; publisher: string; url: string }[];
 ```
 
-`src/wildlife/species.ts`, `habitat.ts`, `conservation.ts` re-export these under their domain-flavoured names (`SPECIES`, `LAYERS`, etc.) along with the pure helpers (`suitabilityFor`, `frameAtYear`, `interpolatedRecovery`, `suitabilityColor`). This mirrors how `standAges.ts` wraps `estonian-stand-ages.json`.
+`src/wildlife/species.ts`, `habitat.ts`, `conservation.ts` re-export these under their domain-flavoured names (`SPECIES`, `LAYERS`, etc.) along with the pure helpers (`suitabilityFor`, `frameAtYear`, `interpolatedRecovery`, `suitabilityColor`). This is **similar in spirit** to how `standAges.ts` wraps `estonian-stand-ages.json`, but with one deliberate divergence: the source here is a TS module, not JSON. The reason: wildlife data is richer in mixed shapes (unions, arrays of ids, optional fields, free-form descriptions) — keeping it as TS avoids defining a JSON schema and a TS-side mirror type.
 
 ### Why this split
 
@@ -277,7 +303,7 @@ Composition:
 - `<header className="header">` with title "Metsa kihid on elupaik" and subtitle "Lugu 1 / 4 — …".
 - `<ForestLayersDiagram />` panel — the cross-section. SVG/CSS rendering of the 6 layers stacked vertically.
 - Selection state: `selectedLayer: LayerId | null`. Clicking a layer in the diagram populates a sibling `<aside>` panel with `Layer.shortDesc`, `examples`, and the species roster (emoji + name list).
-- Below the diagram: a "Mis juhtub lageraiel?" closing panel that overlays a "cleared" version where 5 of 6 layers are visually wiped, leaving only `maapind` (and even that is mechanically disturbed). One-paragraph takeaway.
+- Below the diagram: a "Mis juhtub lageraiel?" closing panel. **Interaction**: a single labelled toggle button ("Näita lageraie järel" ↔ "Näita küpset metsa") flips the same `<ForestLayersDiagram />` between mature-forest and cleared modes via the `clearedView` prop. In `clearedView`, layers `vora` / `alusmets` / `poosarinne` / `rohurinne` / `lamapuit` render at reduced opacity with a strike-through label; only `maapind` stays fully rendered (and even that band gets a "mehaaniliselt häiritud" annotation). One-paragraph takeaway sits next to the toggle.
 
 `ForestLayersDiagram` component contract:
 ```ts
@@ -297,7 +323,7 @@ Composition:
 - Header + subtitle.
 - `<SpeciesAgeMatrix />`: rows = species, columns = `AGE_CLASS_ORDER`. Each cell is coloured by `suitabilityColor(suitabilityFor(s, c))`. Row labels show species emoji + name + a tiny status pill.
 - Selection state: `selectedSpecies: SpeciesId | null`. Defaults to first species. Clicking a row opens `<SpeciesDetailCard />` showing: liik (latin), kaitsekategooria, primaarne vajadus (vana_mets/…), varjualune, toit, märkmed, ja milliseid kihte kasutab (links back to Story 1's layers).
-- A small legend under the matrix maps suitability 0/1/2/3 → label + colour.
+- A small legend under the matrix maps suitability 0/1/2/3 → label + colour, with a footnote: "Sobivushinnangud on valgustavad — kirjandusel ja liigikirjeldustel põhinevad lähendused, mitte mõõdetud tihedused."
 
 `SpeciesAgeMatrix` props:
 ```ts
@@ -344,7 +370,7 @@ The component is responsible only for rendering; the page owns the RAF loop, exa
 
 Composition:
 - Header + subtitle that explicitly bridges back to MAK2030: "Lugu 4 / 4 — kaitsemeetmed, mis Eesti mets-elustiku säilitavad raie kõrval".
-- `<ConservationToolGrid tools={WILDLIFE_TOOLS} />`: card grid (reuses `.subgoals-grid` styling from Story04Strategy as a starting point). Each card: emoji/icon, label, shortDesc, legalBasis pill, "kaitseb" species emojis row, "kate" coverage label, mak2030Link as a small footnote.
+- `<ConservationToolGrid tools={WILDLIFE_TOOLS} />`: card grid (reuses `.subgoals-grid` styling from Story04Strategy as a starting point). Each card: emoji/icon, label, shortDesc, legalBasis pill, "kaitseb" species emojis row, "kate" coverage label, mak2030Link as a small footnote. The grid header carries a one-line disclaimer: "Kaetuse arvud on illustratiivsed; täpsed sihttasemed ja täitmise seis: kliimaministeerium.ee/MAK2030."
 - A "Allikad" panel listing `WILDLIFE_SOURCES` (parallel to Story04Strategy's source list).
 - Closing takeaway tying back to Raidur Story 4: "Need meetmed on osa MAK2030 alaeesmärk 2 (looduslik mitmekesisus) tegevuskavast."
 
@@ -369,25 +395,25 @@ Every numeric value in the curated dataset (suitability, recovery %, coverage la
 
 ## Linking & cross-references
 
-- Landing page Loomad card already links to `#/loomad`. Behaviour: `App.tsx` rewrites `#/loomad` → `#/loomad/1` on mount (and on hashchange).
+- Landing page Loomad card already links to `#/loomad`. Behaviour: `App.tsx`'s first Loomad branch matches both `#/loomad` and `#/loomad/1` and renders `Story01Layers` for either — no JS-side redirect, no back-button risk.
 - Story 1's "cleared view" can softly link to Raidur Story 3 ("vt simulatsioon") since both depict post-clearcut state from different angles.
 - Story 4's mak2030Link strings are plain text references — no clickable cross-page links in scope.
 
 ## Build sequence
 
 1. Domain & data first, no UI:
-   - `src/wildlife/species.ts` types + re-exports.
+   - `src/data/wildlife.ts` — first pass with all 12 species, 5 age classes, 6 layers, 21 succession frames, pre-cut baseline list, 6 conservation tools, sources.
+   - `src/wildlife/species.ts` types + re-exports from data module.
    - `src/wildlife/habitat.ts` types + pure helpers (`suitabilityFor`, `frameAtYear`, `interpolatedRecovery`, `suitabilityColor`).
-   - `src/wildlife/conservation.ts` types + re-exports.
-   - `src/data/wildlife.ts` — first pass with all 12 species, 5 age classes, 6 layers, 21 succession frames, 6 conservation tools, sources.
+   - `src/wildlife/conservation.ts` types + re-exports from data module.
 2. Routing scaffolding:
    - `src/pages/loomad/steps.ts`, `LoomadDock.tsx`.
-   - `App.tsx`: add four routes + `#/loomad` redirect; delete `TodoPage` import.
+   - `App.tsx`: add four routes (first branch matches `#/loomad` and `#/loomad/1`); **delete the `TodoPage` import and the `#/loomad` → `TodoPage` branch in the same edit** so the file type-checks.
+   - Delete `src/pages/TodoPage.tsx` in the same commit (it's already unreferenced once the App.tsx edit lands).
    - Each story page initially renders a placeholder so all routes load.
 3. Components, in order: `ForestLayersDiagram` → `SpeciesAgeMatrix` + `SpeciesDetailCard` → `SuccessionTimeline` → `ConservationToolGrid`.
 4. CSS: new tokens + new class blocks appended to `src/index.css`.
 5. `npm run build` after each story is wired in — that is the project's only type-check.
-6. Delete `TodoPage.tsx` last (so each route works before its predecessor is removed).
 
 ## Out of scope (future work)
 
