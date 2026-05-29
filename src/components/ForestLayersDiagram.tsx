@@ -71,10 +71,10 @@ export function ForestLayersDiagram({
               />
               {isSelected && (
                 <rect
-                  x={0}
-                  y={y}
-                  width={800}
-                  height={h}
+                  x={1}
+                  y={y + 1}
+                  width={798}
+                  height={h - 2}
                   fill="none"
                   stroke="var(--accent)"
                   strokeWidth={2}
