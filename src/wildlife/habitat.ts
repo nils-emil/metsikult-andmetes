@@ -66,10 +66,10 @@ export interface SuccessionFrame {
 }
 
 const SUITABILITY_COLOR: Record<Suitability, string> = {
-  0: "#243029",
-  1: "#5a6a3a",
-  2: "#9ec96f",
-  3: "#B6D24A",
+  0: "#4a5e4f",
+  1: "#8a9c52",
+  2: "#b0d378",
+  3: "#c8df5e",
 };
 
 const SUITABILITY_LABEL: Record<Suitability, string> = {
