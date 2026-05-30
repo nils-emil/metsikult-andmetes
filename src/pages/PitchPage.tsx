@@ -31,6 +31,9 @@ export function PitchPage() {
             </span>
           ))}
         </div>
+        <a className="pitch-home" href="#/">
+          <span aria-hidden>←</span> Esilehele
+        </a>
       </div>
     </div>
   );
