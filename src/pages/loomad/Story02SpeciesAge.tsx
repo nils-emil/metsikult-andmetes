@@ -100,7 +100,6 @@ export function Story02SpeciesAge() {
 
       <div className="panel" style={{ marginTop: 18 }}>
         <div className="topic-head">
-          <span className="topic-nr">{elurikkus.nr}</span>
           <h2 className="topic-title">{elurikkus.pealkiri}</h2>
         </div>
         <p className="topic-body">{elurikkus.sisu}</p>
