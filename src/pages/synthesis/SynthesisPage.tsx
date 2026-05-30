@@ -9,12 +9,15 @@ import {
   BALANCE_ZONE_COUNT,
   type BalanceZone,
 } from "../../synthesis/model";
-import { WILDLIFE_SPECIES } from "../../data/wildlife";
+import { WILDLIFE_SPECIES, WILDLIFE_SOURCES } from "../../data/wildlife";
 import {
   STATUS_LABEL,
+  SPECIES,
   type SpeciesId as WildlifeSpeciesId,
 } from "../../wildlife/species";
 import { ForestBalanceVenn } from "../../components/ForestBalanceVenn";
+import { ConservationToolGrid } from "../../components/ConservationToolGrid";
+import { CONSERVATION_TOOLS } from "../../wildlife/conservation";
 
 const ZONE_META: Record<
   BalanceZone,
@@ -49,22 +52,22 @@ const speciesInZone = (zone: BalanceZone) =>
 /** Broader environmental dimensions of the balance, each linking to its story. */
 const ENV_TOPICS = [
   {
-    icon: "🔥",
-    title: "Süsinik",
-    body: "Raiutud puit kas seob süsinikku (palk → ehitus) või vabastab selle kohe (küttepuu). Pikem kasutus = vähem heidet.",
-    href: "#/keskkond/3",
-  },
-  {
     icon: "🌿",
     title: "Taimestik",
     body: "Lageraie pöörab alustaimestiku pea peale: metsataimed taanduvad, pioneerid vohavad, mustikas taastub aeglaselt.",
+    href: "#/keskkond/3",
+  },
+  {
+    icon: "🔥",
+    title: "Süsinik",
+    body: "Raiutud puit kas seob süsinikku (palk → ehitus) või vabastab selle kohe (küttepuu). Pikem kasutus = vähem heidet.",
     href: "#/keskkond/4",
   },
   {
     icon: "🌍",
     title: "Maakasutuse muutus",
     body: "Raie ei ole raadamine: raie järel mets taastub, raadamise järel saab maast põld või linn — elupaik kaob jäädavalt.",
-    href: "#/keskkond/6",
+    href: "#/keskkond/5",
   },
 ];
 
@@ -286,6 +289,52 @@ export function SynthesisPage() {
               </a>
             ))}
           </div>
+        </div>
+
+        {/* ---- Actionable conservation tools ---- */}
+        <div className="panel">
+          <div className="section-title">
+            <h2>Mida saab teha</h2>
+            <span className="hint">
+              Kaetuse arvud on illustratiivsed; täpsed sihttasemed
+              kliimaministeerium.ee/MAK2030
+            </span>
+          </div>
+          <p>
+            Tasakaal ei püsi ise — selleks on seadusandlikud vahendid:
+            säilikpuud, vääriselupaigad, kaitsealad ja muu. Iga vahend on
+            kompromiss kasutamise ja säilitamise vahel.
+          </p>
+          <div style={{ marginTop: 14 }}>
+            <ConservationToolGrid
+              tools={CONSERVATION_TOOLS}
+              speciesById={SPECIES}
+            />
+          </div>
+          <p className="story-takeaway" style={{ marginTop: 14 }}>
+            <strong>Side MAK2030-ga:</strong> need meetmed on osa{" "}
+            <strong>alaeesmärgist 2 (looduslik mitmekesisus)</strong> ja{" "}
+            <strong>alaeesmärgist 4 (säästev metsamajandus)</strong>{" "}
+            tegevuskavast.
+          </p>
+        </div>
+
+        {/* ---- Sources ---- */}
+        <div className="panel">
+          <div className="section-title">
+            <h2>Allikad</h2>
+            <span className="hint">Riigi andmed ja teadusbaas</span>
+          </div>
+          <ul className="source-list">
+            {WILDLIFE_SOURCES.map((s) => (
+              <li key={s.url}>
+                <a href={s.url} target="_blank" rel="noreferrer">
+                  {s.title}
+                </a>
+                <span className="source-publisher"> — {s.publisher}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* ---- Nav ---- */}

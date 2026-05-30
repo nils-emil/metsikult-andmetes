@@ -11,7 +11,6 @@ import { Story02SpeciesAge } from "./pages/loomad/Story02SpeciesAge";
 import { Story03Carbon } from "./pages/loomad/Story03Carbon";
 import { LandUseStory } from "./pages/loomad/LandUseStory";
 import { VegetationStory } from "./pages/loomad/VegetationStory";
-import { Story04Conservation } from "./pages/loomad/Story04Conservation";
 import { LoomadDock } from "./pages/loomad/LoomadDock";
 import { SynthesisPage } from "./pages/synthesis/SynthesisPage";
 import { HotTopicsPage } from "./pages/synthesis/HotTopicsPage";
@@ -91,7 +90,7 @@ function App() {
   if (hash === "#/keskkond/3") {
     return (
       <>
-        <Story03Carbon />
+        <VegetationStory />
         <LoomadDock currentIndex={2} />
       </>
     );
@@ -99,7 +98,7 @@ function App() {
   if (hash === "#/keskkond/4") {
     return (
       <>
-        <VegetationStory />
+        <Story03Carbon />
         <LoomadDock currentIndex={3} />
       </>
     );
@@ -107,16 +106,8 @@ function App() {
   if (hash === "#/keskkond/5") {
     return (
       <>
-        <Story04Conservation />
-        <LoomadDock currentIndex={4} />
-      </>
-    );
-  }
-  if (hash === "#/keskkond/6") {
-    return (
-      <>
         <LandUseStory />
-        <LoomadDock currentIndex={5} />
+        <LoomadDock currentIndex={4} />
       </>
     );
   }
