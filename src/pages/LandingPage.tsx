@@ -1,83 +1,94 @@
-const LUMBERJACK_FLOATERS = ["🌲", "🌲", "🪵", "🍃", "🌲", "🪓", "🍂", "🌲", "🪵", "🍃"];
-const ANIMAL_FLOATERS = ["🦊", "🦌", "🐿️", "🦉", "🐻", "🐇", "🦝", "🐺", "🦔", "🪶"];
-
-function Floaters({ items }: { items: string[] }) {
-  return (
-    <div className="floaters" aria-hidden>
-      {items.map((emoji, i) => (
-        <span
-          key={i}
-          className="floater"
-          style={{
-            left: `${(i * 53) % 90 + 5}%`,
-            top: `${(i * 37) % 80 + 8}%`,
-            animationDelay: `${(i * 0.7) % 6}s`,
-            animationDuration: `${8 + (i % 5)}s`,
-            fontSize: `${20 + (i % 4) * 8}px`,
-          }}
-        >
-          {emoji}
-        </span>
-      ))}
-    </div>
-  );
-}
-
 export function LandingPage() {
   return (
     <div className="landing">
-      <div className="landing-split">
-        <header className="landing-header">
-          <span className="landing-eyebrow">Metsa perspektiivid</span>
-          <h1 className="landing-headline">Metsa raiel on mitu vastandlikku vaadet</h1>
-          <p className="landing-intro">
-            Et seda ausalt hinnata, tuleb mõista kõiki perspektiive. Vali,
-            kelle pilguga sa täna metsa vaatad.
-          </p>
-        </header>
+      <header className="landing-top">
+        <div className="landing-top-inner">
+          <div className="landing-brand">
+            <span className="landing-brand-mark" aria-hidden>🌲</span>
+            <span>Eesti mets — andmevaade</span>
+          </div>
+          <span className="landing-meta">SMI 2023 · MAK2030</span>
+        </div>
+      </header>
 
+      <section className="landing-hero">
+        <span className="landing-eyebrow">Metsa perspektiivid</span>
+        <h1 className="landing-headline">
+          Metsa raiel on mitu vastandlikku vaadet
+        </h1>
+        <p className="landing-intro">
+          Et seda ausalt hinnata, tuleb mõista kõiki perspektiive. Vali, kelle
+          pilguga sa täna metsa vaatad — või uuri kõrvuti, kuidas ressursi- ja
+          elurikkuse vaade kokku saavad.
+        </p>
+      </section>
+
+      <section className="landing-cards">
         <a
-          className="landing-side lumberjack-side"
+          className="landing-card"
           href="#/raidur/1"
           aria-label="Vaata metsaraiduri perspektiivist"
         >
-          <Floaters items={LUMBERJACK_FLOATERS} />
-          <div className="landing-content">
-            <div className="landing-emoji landing-emoji-wiggle" aria-hidden>🪓</div>
-            <p className="landing-tagline">Vaata sellest perspektiivist</p>
-            <h2 className="landing-title">Metsaraidur</h2>
-            <p className="landing-sub">
-              Mets kui ressurss. Puuliik, kasvukoht, raievanus — millal toob
-              raie kõige rohkem tulu.
-            </p>
-            <span className="landing-cta">
-              Ava see vaade <span className="cta-arrow">→</span>
-            </span>
-          </div>
+          <span className="landing-card-tag">Vaade 1 · Ressurss</span>
+          <span className="landing-card-emoji" aria-hidden>🪓</span>
+          <h2 className="landing-card-title">Metsaraidur</h2>
+          <p className="landing-card-sub">
+            Mets kui ressurss. Puuliik, kasvukoht, raievanus — kuidas
+            kujuneb raieplaan ning millal toob raie kõige rohkem tulu.
+          </p>
+          <span className="landing-card-cta">
+            Ava vaade <span className="cta-arrow">→</span>
+          </span>
         </a>
 
-        <div className="landing-divider" aria-hidden />
-
         <a
-          className="landing-side animal-side"
+          className="landing-card"
           href="#/loomad"
           aria-label="Vaata elurikkuse ja süsiniku perspektiivist"
         >
-          <Floaters items={ANIMAL_FLOATERS} />
-          <div className="landing-content">
-            <div className="landing-emoji landing-emoji-bounce" aria-hidden>🦌</div>
-            <p className="landing-tagline">Vaata sellest perspektiivist</p>
-            <h2 className="landing-title">Keskkond</h2>
-            <p className="landing-sub">
-              Mets kui elupaik liikidele ja hoidla süsinikule. Mida raie
-              tähendab elustikule ja kliimale.
-            </p>
-            <span className="landing-cta">
-              Ava see vaade <span className="cta-arrow">→</span>
-            </span>
-          </div>
+          <span className="landing-card-tag">Vaade 2 · Keskkond</span>
+          <span className="landing-card-emoji" aria-hidden>🦌</span>
+          <h2 className="landing-card-title">Keskkond</h2>
+          <p className="landing-card-sub">
+            Mets kui elupaik liikidele ja hoidla süsinikule. Mida raie
+            tähendab elustikule, kliimale ning kaitsealadele.
+          </p>
+          <span className="landing-card-cta">
+            Ava vaade <span className="cta-arrow">→</span>
+          </span>
         </a>
-      </div>
+      </section>
+
+      <section className="landing-stats" aria-label="Eesti metsa põhinäitajad">
+        <div>
+          <div className="landing-stat-label">Metsamaad Eestis</div>
+          <div className="landing-stat-value">
+            51<span className="kpi-unit">%</span>
+          </div>
+          <div className="landing-stat-sub">pindalast (SMI 2023)</div>
+        </div>
+        <div>
+          <div className="landing-stat-label">Tagavara</div>
+          <div className="landing-stat-value">
+            489<span className="kpi-unit"> mln m³</span>
+          </div>
+          <div className="landing-stat-sub">üldine kasvav tagavara</div>
+        </div>
+        <div>
+          <div className="landing-stat-label">Aastane juurdekasv</div>
+          <div className="landing-stat-value">
+            16<span className="kpi-unit"> mln m³/a</span>
+          </div>
+          <div className="landing-stat-sub">keskmine kasv</div>
+        </div>
+        <div>
+          <div className="landing-stat-label">Range kaitse all</div>
+          <div className="landing-stat-value">
+            16<span className="kpi-unit">%</span>
+          </div>
+          <div className="landing-stat-sub">metsamaast (MAK2030)</div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -52,7 +52,7 @@ export function StandAgesChart({
   tooltipRows.push({
     name: "Kokku",
     key: "total",
-    color: "#F0EBDE",
+    color: "#1A2B30",
     format: fmtArea,
   });
 
@@ -69,31 +69,31 @@ export function StandAgesChart({
           margin={{ top: 10, right: 20, left: 0, bottom: 18 }}
         >
           <CartesianGrid
-            stroke="#2E4C40"
+            stroke="#E1E5E8"
             strokeDasharray="3 4"
             vertical={false}
           />
           <XAxis
             dataKey="klass"
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
             interval={0}
             label={{
               value: "Vanuseklass (aastat)",
               position: "insideBottom",
               offset: -8,
-              fill: "#7E8A7B",
+              fill: "#7A8990",
               fontSize: 11,
             }}
           />
           <YAxis
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
             label={{
               value: "tuh ha",
               angle: -90,
               position: "insideLeft",
-              fill: "#7E8A7B",
+              fill: "#7A8990",
               fontSize: 11,
               dy: 20,
             }}
@@ -115,7 +115,7 @@ export function StandAgesChart({
                 stackId="stand"
                 fill={colors[name]}
                 fillOpacity={opacity}
-                stroke={isSelected ? "#F0EBDE" : undefined}
+                stroke={isSelected ? "#1A2B30" : undefined}
                 strokeWidth={isSelected ? 1.2 : 0}
                 className={modeled ? "bar-clickable" : undefined}
                 onClick={

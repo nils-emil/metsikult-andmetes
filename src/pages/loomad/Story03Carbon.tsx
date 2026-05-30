@@ -136,7 +136,7 @@ export function Story03Carbon() {
               margin={{ top: 10, right: 28, left: 0, bottom: 8 }}
             >
               <CartesianGrid
-                stroke="#2E4C40"
+                stroke="#E1E5E8"
                 strokeDasharray="3 4"
                 vertical={false}
               />
@@ -145,25 +145,25 @@ export function Story03Carbon() {
                 type="number"
                 domain={[0, 100]}
                 ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
-                tick={{ fill: "#A8B2A4", fontSize: 11 }}
-                stroke="#456554"
+                tick={{ fill: "#4A5A60", fontSize: 11 }}
+                stroke="#7A8990"
                 label={{
                   value: "Aastad pärast raiet",
                   position: "insideBottom",
                   offset: -2,
-                  fill: "#7E8A7B",
+                  fill: "#7A8990",
                   fontSize: 11,
                 }}
               />
               <YAxis
-                tick={{ fill: "#A8B2A4", fontSize: 11 }}
-                stroke="#456554"
+                tick={{ fill: "#4A5A60", fontSize: 11 }}
+                stroke="#7A8990"
                 domain={[0, CO2_TOTAL_T]}
                 label={{
                   value: "CO₂ vabanenud (t / ha)",
                   angle: -90,
                   position: "insideLeft",
-                  fill: "#7E8A7B",
+                  fill: "#7A8990",
                   fontSize: 11,
                   dy: 60,
                 }}
@@ -179,7 +179,7 @@ export function Story03Carbon() {
                 strokeDasharray="2 4"
                 label={{
                   value: "kogu puidu süsinik",
-                  fill: "#A8B2A4",
+                  fill: "#4A5A60",
                   fontSize: 10,
                   position: "insideTopRight",
                 }}

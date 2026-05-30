@@ -21,16 +21,16 @@ export function RevenueBars({ data }: { data: BarPoint[] }) {
     <div className="chart-wrap">
       <ResponsiveContainer>
         <BarChart data={data} margin={{ top: 10, right: 24, left: 0, bottom: 10 }}>
-          <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" vertical={false} />
+          <CartesianGrid stroke="#E1E5E8" strokeDasharray="3 4" vertical={false} />
           <XAxis
             dataKey="category"
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
             interval={0}
           />
           <YAxis
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
             tickFormatter={(v) => {
               const n = v as number;
               const abs = Math.abs(n);

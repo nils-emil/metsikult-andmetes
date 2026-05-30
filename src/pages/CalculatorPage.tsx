@@ -437,7 +437,7 @@ function ModeToggle<T extends string>({
           onClick={() => onChange(o.id)}
           style={{
             background: value === o.id ? "var(--accent-dim)" : "transparent",
-            color: value === o.id ? "#10211A" : "var(--text-dim)",
+            color: value === o.id ? "#FFFFFF" : "var(--text-dim)",
             border: "none",
             padding: "4px 10px",
             borderRadius: 6,

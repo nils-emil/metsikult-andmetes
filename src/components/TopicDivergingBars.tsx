@@ -38,26 +38,26 @@ export function TopicDivergingBars({
             data={data}
             margin={{ top: 20, right: 20, left: 8, bottom: 10 }}
           >
-            <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" vertical={false} />
+            <CartesianGrid stroke="#E1E5E8" strokeDasharray="3 4" vertical={false} />
             <XAxis
               dataKey="label"
-              tick={{ fill: "#A8B2A4", fontSize: 12 }}
-              stroke="#456554"
+              tick={{ fill: "#4A5A60", fontSize: 12 }}
+              stroke="#7A8990"
               interval={0}
             />
             <YAxis
-              tick={{ fill: "#A8B2A4", fontSize: 11 }}
-              stroke="#456554"
+              tick={{ fill: "#4A5A60", fontSize: 11 }}
+              stroke="#7A8990"
               label={{
                 value: unit,
                 angle: -90,
                 position: "insideLeft",
-                fill: "#7E8A7B",
+                fill: "#7A8990",
                 fontSize: 11,
                 dy: 30,
               }}
             />
-            <ReferenceLine y={0} stroke="#7E8A7B" strokeWidth={1.2} />
+            <ReferenceLine y={0} stroke="#7A8990" strokeWidth={1.2} />
             <Tooltip
               cursor={{ fill: "#ffffff", fillOpacity: 0.04 }}
               content={
@@ -86,7 +86,7 @@ export function TopicDivergingBars({
               <LabelList
                 dataKey="value"
                 position="top"
-                fill="#F0EBDE"
+                fill="#1A2B30"
                 fontSize={12}
                 formatter={(value) => fmt(Number(value))}
               />

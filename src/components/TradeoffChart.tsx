@@ -63,7 +63,7 @@ export function TradeoffChart({
               <stop offset="100%" stopColor={ECON_COLOR} stopOpacity={0.02} />
             </linearGradient>
           </defs>
-          <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" vertical={false} />
+          <CartesianGrid stroke="#E1E5E8" strokeDasharray="3 4" vertical={false} />
 
           <ReferenceArea
             yAxisId="pct"
@@ -71,12 +71,12 @@ export function TradeoffChart({
             x2={maxEcologyAge}
             fill="#B6D24A"
             fillOpacity={0.06}
-            stroke="#456554"
+            stroke="#7A8990"
             strokeOpacity={0.3}
             strokeDasharray="2 4"
             label={{
               value: "Kompromissiala",
-              fill: "#7E8A7B",
+              fill: "#7A8990",
               fontSize: 11,
               position: "insideTop",
             }}
@@ -86,13 +86,13 @@ export function TradeoffChart({
             dataKey="age"
             type="number"
             domain={["dataMin", "dataMax"]}
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
             label={{
               value: "Raievanus (aastat)",
               position: "insideBottom",
               offset: -2,
-              fill: "#7E8A7B",
+              fill: "#7A8990",
               fontSize: 11,
             }}
           />
@@ -100,13 +100,13 @@ export function TradeoffChart({
             yAxisId="pct"
             domain={[0, 100]}
             ticks={[0, 25, 50, 75, 100]}
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
             label={{
               value: "suhteline väärtus (%)",
               angle: -90,
               position: "insideLeft",
-              fill: "#7E8A7B",
+              fill: "#7A8990",
               fontSize: 11,
               dy: 60,
             }}
@@ -114,7 +114,7 @@ export function TradeoffChart({
           <YAxis yAxisId="raw" hide domain={["dataMin", "dataMax"]} />
           <Tooltip
             content={tooltip as never}
-            cursor={{ stroke: "#F0EBDE", strokeOpacity: 0.3 }}
+            cursor={{ stroke: "#1A2B30", strokeOpacity: 0.3 }}
           />
 
           <Area
@@ -170,12 +170,12 @@ export function TradeoffChart({
           <ReferenceLine
             yAxisId="pct"
             x={rotationAge}
-            stroke="#F0EBDE"
+            stroke="#1A2B30"
             strokeOpacity={0.65}
             strokeDasharray="2 4"
             label={{
               value: `Valitud: ${rotationAge}a`,
-              fill: "#F0EBDE",
+              fill: "#1A2B30",
               fontSize: 11,
               position: "insideBottomRight",
             }}

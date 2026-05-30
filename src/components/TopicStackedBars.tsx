@@ -43,19 +43,19 @@ export function TopicStackedBars({ periods }: { periods: StatusPeriod[] }) {
             layout="vertical"
             margin={{ top: 10, right: 20, left: 8, bottom: 10 }}
           >
-            <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" horizontal={false} />
+            <CartesianGrid stroke="#E1E5E8" strokeDasharray="3 4" horizontal={false} />
             <XAxis
               type="number"
               domain={[0, 100]}
-              tick={{ fill: "#A8B2A4", fontSize: 11 }}
-              stroke="#456554"
+              tick={{ fill: "#4A5A60", fontSize: 11 }}
+              stroke="#7A8990"
               tickFormatter={(v) => `${v}%`}
             />
             <YAxis
               type="category"
               dataKey="period"
-              tick={{ fill: "#A8B2A4", fontSize: 12 }}
-              stroke="#456554"
+              tick={{ fill: "#4A5A60", fontSize: 12 }}
+              stroke="#7A8990"
               width={120}
             />
             <Tooltip

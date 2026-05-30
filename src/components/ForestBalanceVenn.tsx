@@ -76,19 +76,19 @@ export function ForestBalanceVenn({
         />
 
         {/* circle titles */}
-        <text x={150} y={34} fontSize={16} fontWeight={700} fill="#E2C79A" textAnchor="middle">
+        <text x={150} y={34} fontSize={16} fontWeight={700} fill="#A65A3A" textAnchor="middle">
           🪓 Majandusmets
         </text>
-        <text x={150} y={54} fontSize={11.5} fill="#9b8a6f" textAnchor="middle">
+        <text x={150} y={54} fontSize={11.5} fill="#7A8990" textAnchor="middle">
           raie ja tulu
         </text>
         <text x={650} y={34} fontSize={16} fontWeight={700} fill="#B6D24A" textAnchor="middle">
           Kaitsealune mets 🛡️
         </text>
-        <text x={650} y={54} fontSize={11.5} fill="#7f944a" textAnchor="middle">
+        <text x={650} y={54} fontSize={11.5} fill="#003D49" textAnchor="middle">
           vana mets, kaitse
         </text>
-        <text x={400} y={44} fontSize={12} fontWeight={700} fill="#cfe0a0" textAnchor="middle" letterSpacing="0.08em">
+        <text x={400} y={44} fontSize={12} fontWeight={700} fill="#003D49" textAnchor="middle" letterSpacing="0.08em">
           MÕLEMAS
         </text>
 

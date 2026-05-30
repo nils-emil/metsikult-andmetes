@@ -49,25 +49,25 @@ export function GrowthChart({
               <stop offset="100%" stopColor="#B6D24A" stopOpacity={0.03} />
             </linearGradient>
           </defs>
-          <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" vertical={false} />
+          <CartesianGrid stroke="#E1E5E8" strokeDasharray="3 4" vertical={false} />
           <XAxis
             dataKey="age"
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
-            label={{ value: "Puistu vanus (aastat)", position: "insideBottom", offset: -2, fill: "#7E8A7B", fontSize: 11 }}
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
+            label={{ value: "Puistu vanus (aastat)", position: "insideBottom", offset: -2, fill: "#7A8990", fontSize: 11 }}
           />
           <YAxis
             yAxisId="vol"
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
-            label={{ value: "m³/ha", angle: -90, position: "insideLeft", fill: "#7E8A7B", fontSize: 11, dy: 30 }}
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
+            label={{ value: "m³/ha", angle: -90, position: "insideLeft", fill: "#7A8990", fontSize: 11, dy: 30 }}
           />
           <YAxis
             yAxisId="inc"
             orientation="right"
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
-            label={{ value: "m³/ha/a", angle: 90, position: "insideRight", fill: "#7E8A7B", fontSize: 11, dy: -30 }}
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
+            label={{ value: "m³/ha/a", angle: 90, position: "insideRight", fill: "#7A8990", fontSize: 11, dy: -30 }}
           />
           <Tooltip content={tooltip as never} cursor={{ stroke: "#B6D24A", strokeOpacity: 0.4 }} />
           <Area
@@ -104,10 +104,10 @@ export function GrowthChart({
             <ReferenceLine
               x={rotationAge}
               yAxisId="vol"
-              stroke="#F0EBDE"
+              stroke="#1A2B30"
               strokeOpacity={0.55}
               strokeDasharray="2 4"
-              label={{ value: `Raiering: ${rotationAge}a`, fill: "#F0EBDE", fontSize: 11, position: "top" }}
+              label={{ value: `Raiering: ${rotationAge}a`, fill: "#1A2B30", fontSize: 11, position: "top" }}
             />
           )}
         </ComposedChart>

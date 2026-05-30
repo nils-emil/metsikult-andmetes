@@ -107,7 +107,7 @@ export function SpeciesRotationCompare({
             margin={{ top: 24, right: 28, left: 0, bottom: 8 }}
           >
             <CartesianGrid
-              stroke="#2E4C40"
+              stroke="#E1E5E8"
               strokeDasharray="3 4"
               vertical={false}
             />
@@ -118,24 +118,24 @@ export function SpeciesRotationCompare({
               ticks={[
                 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140,
               ]}
-              tick={{ fill: "#A8B2A4", fontSize: 11 }}
-              stroke="#456554"
+              tick={{ fill: "#4A5A60", fontSize: 11 }}
+              stroke="#7A8990"
               label={{
                 value: "Vanus (aastat)",
                 position: "insideBottom",
                 offset: -2,
-                fill: "#7E8A7B",
+                fill: "#7A8990",
                 fontSize: 11,
               }}
             />
             <YAxis
-              tick={{ fill: "#A8B2A4", fontSize: 11 }}
-              stroke="#456554"
+              tick={{ fill: "#4A5A60", fontSize: 11 }}
+              stroke="#7A8990"
               label={{
                 value: "m³/ha/a",
                 angle: -90,
                 position: "insideLeft",
-                fill: "#7E8A7B",
+                fill: "#7A8990",
                 fontSize: 11,
                 dy: 30,
               }}

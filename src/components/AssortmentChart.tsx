@@ -66,18 +66,18 @@ export function AssortmentChart({
           stackOffset="none"
           margin={{ top: 10, right: 20, left: 0, bottom: 8 }}
         >
-          <CartesianGrid stroke="#2E4C40" strokeDasharray="3 4" vertical={false} />
+          <CartesianGrid stroke="#E1E5E8" strokeDasharray="3 4" vertical={false} />
           <XAxis
             dataKey="age"
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
-            label={{ value: "Puistu vanus (aastat)", position: "insideBottom", offset: -2, fill: "#7E8A7B", fontSize: 11 }}
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
+            label={{ value: "Puistu vanus (aastat)", position: "insideBottom", offset: -2, fill: "#7A8990", fontSize: 11 }}
           />
           <YAxis
-            tick={{ fill: "#A8B2A4", fontSize: 11 }}
-            stroke="#456554"
+            tick={{ fill: "#4A5A60", fontSize: 11 }}
+            stroke="#7A8990"
             domain={mode === "share" ? [0, 100] : ["auto", "auto"]}
-            label={{ value: keys.unit, angle: -90, position: "insideLeft", fill: "#7E8A7B", fontSize: 11, dy: 20 }}
+            label={{ value: keys.unit, angle: -90, position: "insideLeft", fill: "#7A8990", fontSize: 11, dy: 20 }}
           />
           <Tooltip content={tooltip as never} cursor={{ stroke: "#B6D24A", strokeOpacity: 0.4 }} />
           <Area
@@ -109,10 +109,10 @@ export function AssortmentChart({
           />
           <ReferenceLine
             x={rotationAge}
-            stroke="#F0EBDE"
+            stroke="#1A2B30"
             strokeOpacity={0.55}
             strokeDasharray="2 4"
-            label={{ value: `${rotationAge}a`, fill: "#F0EBDE", fontSize: 11, position: "top" }}
+            label={{ value: `${rotationAge}a`, fill: "#1A2B30", fontSize: 11, position: "top" }}
           />
         </AreaChart>
       </ResponsiveContainer>

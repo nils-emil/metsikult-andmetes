@@ -23,13 +23,13 @@ const ZONE_META: Record<
   majandus: {
     label: "Majandusmets",
     icon: "🪓",
-    color: "#E2C79A",
+    color: "#A65A3A",
     blurb: "Talub metsamajandust — noor ja keskealine mets sobib. Raie isegi soosib seda liiki.",
   },
   molemad: {
     label: "Mõlemas",
     icon: "🤝",
-    color: "#cfe0a0",
+    color: "#003D49",
     blurb:
       "Püsib raie kõrval, KUI jäetakse säilikpuid, lamapuitu ja metsaservi.",
   },
@@ -101,7 +101,7 @@ export function SynthesisPage() {
                 Ainult majandusmetsas — <strong>{BALANCE_ZONE_COUNT.majandus}</strong>
               </span>
               <span className="venn-legend-item">
-                <span className="venn-legend-dot" style={{ background: "#cfe0a0" }} />
+                <span className="venn-legend-dot" style={{ background: "#003D49" }} />
                 Mõlemas — <strong>{BALANCE_ZONE_COUNT.molemad}</strong>
               </span>
               <span className="venn-legend-item">
