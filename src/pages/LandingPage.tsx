@@ -77,18 +77,6 @@ export function LandingPage() {
           </div>
         </a>
       </div>
-
-      <a className="landing-banner" href="#/sild">
-        <span className="landing-banner-text">
-          <strong>Kaks vaadet kohtuvad:</strong> raidur näeb tulu, loom näeb
-          elupaika. Pane mõlemad ühele skaalale ja otsusta ise, kus on õige
-          raievanus.
-        </span>
-        <span className="landing-banner-link">
-          Otsusta ise: kaks vaadet, üks raievanus
-          <span className="cta-arrow" aria-hidden>→</span>
-        </span>
-      </a>
     </div>
   );
 }
