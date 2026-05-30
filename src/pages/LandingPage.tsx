@@ -67,7 +67,7 @@ export function LandingPage() {
           <div className="landing-content">
             <div className="landing-emoji landing-emoji-bounce" aria-hidden>🦌</div>
             <p className="landing-tagline">Vaata sellest perspektiivist</p>
-            <h2 className="landing-title">Elurikkus ja süsinik</h2>
+            <h2 className="landing-title">Keskkond</h2>
             <p className="landing-sub">
               Mets kui elupaik liikidele ja hoidla süsinikule. Mida raie
               tähendab elustikule ja kliimale.
