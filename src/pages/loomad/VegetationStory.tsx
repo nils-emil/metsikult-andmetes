@@ -58,7 +58,7 @@ export function VegetationStory() {
         <div>
           <h1 className="title">Taimestik — väike kiht, suur mõju</h1>
           <p className="subtitle">
-            Lugu 5 / 6 — metsa põhi pole tühi. Samblad, marjavarred ja rohi
+            Lugu 3 / 5 — metsa põhi pole tühi. Samblad, marjavarred ja rohi
             moodustavad õhukese kihi, mis mõjutab kogu metsa: mullast ja veest
             kuni selleni, kes metsas elab.
           </p>

@@ -78,7 +78,7 @@ export function LandUseStory() {
         <div>
           <h1 className="title">Maakasutus muutub</h1>
           <p className="subtitle">
-            Lugu 4 / 6 — maa pole igavesti sama. Mets võib saada põlluks, põld
+            Lugu 5 / 5 — maa pole igavesti sama. Mets võib saada põlluks, põld
             metsaks, mets teeks või linnaks. Iga muutus muudab elupaika ja
             süsinikku — ja mõni neist on jäädav.
           </p>
