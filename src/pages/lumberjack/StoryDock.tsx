@@ -38,9 +38,9 @@ export function StoryDock({ currentIndex }: { currentIndex: number }) {
       <StoryEndModal
         open={endOpen}
         onClose={() => setEndOpen(false)}
-        otherHref="#/loomad/1"
+        otherHref="#/keskkond/1"
         otherEmoji="🦌"
-        otherTitle="Loomade ja keskkonna vaade"
+        otherTitle="Keskkonna vaade"
       />
     </>
   );

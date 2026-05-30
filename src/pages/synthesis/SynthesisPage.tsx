@@ -46,6 +46,28 @@ const balanceById = new Map(SPECIES_BALANCE.map((b) => [b.species, b]));
 const speciesInZone = (zone: BalanceZone) =>
   SPECIES_BALANCE.filter((b) => b.zone === zone);
 
+/** Broader environmental dimensions of the balance, each linking to its story. */
+const ENV_TOPICS = [
+  {
+    icon: "🔥",
+    title: "Süsinik",
+    body: "Raiutud puit kas seob süsinikku (palk → ehitus) või vabastab selle kohe (küttepuu). Pikem kasutus = vähem heidet.",
+    href: "#/keskkond/3",
+  },
+  {
+    icon: "🌍",
+    title: "Maakasutuse muutus",
+    body: "Raie ei ole raadamine: raie järel mets taastub, raadamise järel saab maast põld või linn — elupaik kaob jäädavalt.",
+    href: "#/keskkond/4",
+  },
+  {
+    icon: "🌿",
+    title: "Taimestik",
+    body: "Lageraie pöörab alustaimestiku pea peale: metsataimed taanduvad, pioneerid vohavad, mustikas taastub aeglaselt.",
+    href: "#/keskkond/5",
+  },
+];
+
 /** Faustmann economic optimum for a representative spruce stand (3% rate). */
 const ECON_OPTIMUM_AGE = optimalRotation({
   speciesId: "spruce",
@@ -240,14 +262,40 @@ export function SynthesisPage() {
           </p>
         </div>
 
+        {/* ---- Broader environmental impact ---- */}
+        <div className="panel">
+          <div className="section-title">
+            <h2>Keskkonnamõju laiemalt</h2>
+            <span className="hint">Raie puudutab muudki kui liike</span>
+          </div>
+          <p>
+            Tasakaal ei ole ainult liikide küsimus — raie mõjutab ka kliimat,
+            mulda ja maakasutust.
+          </p>
+          <div className="balance-tiers" style={{ marginTop: 14 }}>
+            {ENV_TOPICS.map((t) => (
+              <a className="balance-tier env-topic" href={t.href} key={t.title}>
+                <div className="balance-tier-head">
+                  <span className="balance-tier-icon" aria-hidden>
+                    {t.icon}
+                  </span>
+                  <h3>{t.title}</h3>
+                </div>
+                <p>{t.body}</p>
+                <span className="env-topic-cta">Loe lähemalt →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
         {/* ---- Nav ---- */}
         <div className="panel">
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
             <a className="back-btn" href="#/raidur/1">
               🪓 Raiduri lood
             </a>
-            <a className="back-btn" href="#/loomad/1">
-              🦌 Loomade lood
+            <a className="back-btn" href="#/keskkond/1">
+              🦌 Keskkonna lood
             </a>
             <a className="back-btn" href="#/teemad">
               🔥 Olulised teemad

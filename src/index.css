@@ -2225,6 +2225,45 @@ button.dock-btn {
   color: var(--text-dim);
 }
 
+/* Environment topic cards (synthesis summary) */
+a.env-topic {
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 0.12s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+a.env-topic:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lift);
+}
+
+.env-topic-cta {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* Land-use transition header (loomad land-use story) */
+.landuse-transition {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 30px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.landuse-transition .landuse-arrow {
+  font-size: 18px;
+  color: var(--text-mute);
+}
+
 /* Balance summary tiers (synthesis page) */
 .balance-tiers {
   display: grid;

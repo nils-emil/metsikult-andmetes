@@ -20,7 +20,7 @@ export function Story01Layers() {
         <div>
           <h1 className="title">Metsa kihid on elupaik</h1>
           <p className="subtitle">
-            Lugu 1 / 4 — küps mets pole üks ruum, vaid kuus kihti. Iga kiht on
+            Lugu 1 / 6 — küps mets pole üks ruum, vaid kuus kihti. Iga kiht on
             keegi koju.
           </p>
         </div>

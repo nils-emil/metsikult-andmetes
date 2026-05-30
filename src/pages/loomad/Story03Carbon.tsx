@@ -80,7 +80,7 @@ export function Story03Carbon() {
         <div>
           <h1 className="title">Süsinik palgis vs küttepuus</h1>
           <p className="subtitle">
-            Lugu 3 / 4 — kui üks hektar küpset metsa raiutakse, on selles ~225
+            Lugu 3 / 6 — kui üks hektar küpset metsa raiutakse, on selles ~225
             tonni CO₂. Kui kogu see puit küttepuuks, vabaneb kogu süsinik
             atmosfääri kohe. Kui palgiks ja mööbliks, jääb pool süsinikust
             tootesse 50 aastaks kinni.

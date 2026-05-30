@@ -33,7 +33,7 @@ export function LandingPage() {
 
         <a
           className="landing-card"
-          href="#/loomad"
+          href="#/keskkond"
           aria-label="Vaata elurikkuse ja süsiniku perspektiivist"
         >
           <span className="landing-card-tag">Vaade 2 · Keskkond</span>

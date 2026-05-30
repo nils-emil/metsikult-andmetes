@@ -10,7 +10,7 @@ export function Story04Conservation() {
         <div>
           <h1 className="title">Mida saab teha</h1>
           <p className="subtitle">
-            Lugu 4 / 4 — kaitsemeetmed, mis Eesti mets-elustiku säilitavad raie
+            Lugu 6 / 6 — kaitsemeetmed, mis Eesti mets-elustiku säilitavad raie
             kõrval. Iga vahend on seadusandlik kompromiss kasutamise ja
             säilitamise vahel.
           </p>

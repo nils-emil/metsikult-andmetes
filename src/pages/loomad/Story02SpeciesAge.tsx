@@ -28,7 +28,7 @@ export function Story02SpeciesAge() {
         <div>
           <h1 className="title">Liik × metsa vanus</h1>
           <p className="subtitle">
-            Lugu 2 / 4 — 12 Eesti metsaelanikku, viis vanuseklassi. Iga lahter
+            Lugu 2 / 6 — 12 Eesti metsaelanikku, viis vanuseklassi. Iga lahter
             näitab, kui hästi see vanusega mets liigi vajadusi täidab.
           </p>
         </div>

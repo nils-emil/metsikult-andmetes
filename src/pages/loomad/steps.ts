@@ -4,8 +4,10 @@ export interface Step {
 }
 
 export const LOOMAD_STEPS: Step[] = [
-  { hash: "#/loomad/1", label: "Metsa kihid on elupaik" },
-  { hash: "#/loomad/2", label: "Liik × metsa vanus" },
-  { hash: "#/loomad/3", label: "Süsinik palgis vs küttepuus" },
-  { hash: "#/loomad/4", label: "Mida saab teha" },
+  { hash: "#/keskkond/1", label: "Metsa kihid on elupaik" },
+  { hash: "#/keskkond/2", label: "Liik × metsa vanus" },
+  { hash: "#/keskkond/3", label: "Süsinik palgis vs küttepuus" },
+  { hash: "#/keskkond/4", label: "Maakasutus muutub" },
+  { hash: "#/keskkond/5", label: "Taimestik ja selle mõju" },
+  { hash: "#/keskkond/6", label: "Mida saab teha" },
 ];
