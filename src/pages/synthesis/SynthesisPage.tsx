@@ -18,6 +18,26 @@ import {
 import { ForestBalanceVenn } from "../../components/ForestBalanceVenn";
 import { ConservationToolGrid } from "../../components/ConservationToolGrid";
 import { CONSERVATION_TOOLS } from "../../wildlife/conservation";
+import { TopicBars } from "../../components/TopicBars";
+import { TopicDivergingBars } from "../../components/TopicDivergingBars";
+import { TopicDonut } from "../../components/TopicDonut";
+import { TopicStackedBars } from "../../components/TopicStackedBars";
+import { HOT_TOPICS, type HotTopic } from "../../data/hotTopics";
+
+function TopicVisual({ chart }: { chart: HotTopic["chart"] }) {
+  switch (chart.kind) {
+    case "donut":
+      return <TopicDonut segments={chart.segments} unit={chart.unit} />;
+    case "bars":
+      return (
+        <TopicBars data={chart.data} unit={chart.unit} yLabel={chart.yLabel} />
+      );
+    case "diverging":
+      return <TopicDivergingBars data={chart.data} unit={chart.unit} />;
+    case "stacked":
+      return <TopicStackedBars periods={chart.periods} />;
+  }
+}
 
 const ZONE_META: Record<
   BalanceZone,
@@ -245,6 +265,34 @@ export function SynthesisPage() {
           </div>
         </div>
 
+        {/* ---- Actionable conservation tools ---- */}
+        <div className="panel">
+          <div className="section-title">
+            <h2>Mida saab teha</h2>
+            <span className="hint">
+              Kaetuse arvud on illustratiivsed; täpsed sihttasemed
+              kliimaministeerium.ee/MAK2030
+            </span>
+          </div>
+          <p>
+            Tasakaal ei püsi ise — selleks on seadusandlikud vahendid:
+            säilikpuud, vääriselupaigad, kaitsealad ja muu. Iga vahend on
+            kompromiss kasutamise ja säilitamise vahel.
+          </p>
+          <div style={{ marginTop: 14 }}>
+            <ConservationToolGrid
+              tools={CONSERVATION_TOOLS}
+              speciesById={SPECIES}
+            />
+          </div>
+          <p className="story-takeaway" style={{ marginTop: 14 }}>
+            <strong>Side MAK2030-ga:</strong> need meetmed on osa{" "}
+            <strong>alaeesmärgist 2 (looduslik mitmekesisus)</strong> ja{" "}
+            <strong>alaeesmärgist 4 (säästev metsamajandus)</strong>{" "}
+            tegevuskavast.
+          </p>
+        </div>
+
         {/* ---- The thesis: economics overshoots ---- */}
         <div className="panel">
           <div className="section-title">
@@ -291,32 +339,88 @@ export function SynthesisPage() {
           </div>
         </div>
 
-        {/* ---- Actionable conservation tools ---- */}
+        {/* ---- Hot topics: current public debate ---- */}
         <div className="panel">
           <div className="section-title">
-            <h2>Mida saab teha</h2>
+            <h2>Olulised teemad</h2>
             <span className="hint">
-              Kaetuse arvud on illustratiivsed; täpsed sihttasemed
-              kliimaministeerium.ee/MAK2030
+              Seitse vaidlust, mille üle praegu kõige rohkem debatti käib
             </span>
           </div>
           <p>
-            Tasakaal ei püsi ise — selleks on seadusandlikud vahendid:
-            säilikpuud, vääriselupaigad, kaitsealad ja muu. Iga vahend on
-            kompromiss kasutamise ja säilitamise vahel.
+            Mida tegelikult vaieldakse Eesti metsade kohta? Iga teema kõrval on
+            reaalsetel andmetel põhinev visualiseering ja viide allikale.
           </p>
-          <div style={{ marginTop: 14 }}>
-            <ConservationToolGrid
-              tools={CONSERVATION_TOOLS}
-              speciesById={SPECIES}
-            />
+          <div className="story-cards story-cards-3" style={{ marginTop: 14 }}>
+            <div className="story-card story-card-accent">
+              <div className="story-card-label">Kaitse eesmärk</div>
+              <div className="story-card-value">
+                30 <span className="story-card-unit">% maismaast</span>
+              </div>
+              <div className="story-card-sub">praegu ~28,7%</div>
+            </div>
+            <div className="story-card">
+              <div className="story-card-label">Raiemaht 2023</div>
+              <div className="story-card-value">
+                11,7 <span className="story-card-unit">mln m³</span>
+              </div>
+              <div className="story-card-sub">tagavara langeb</div>
+            </div>
+            <div className="story-card">
+              <div className="story-card-label">LULUCF netoheide 2023</div>
+              <div className="story-card-value">
+                +2131 <span className="story-card-unit">kt CO₂</span>
+              </div>
+              <div className="story-card-sub">siduja → heitja</div>
+            </div>
           </div>
-          <p className="story-takeaway" style={{ marginTop: 14 }}>
-            <strong>Side MAK2030-ga:</strong> need meetmed on osa{" "}
-            <strong>alaeesmärgist 2 (looduslik mitmekesisus)</strong> ja{" "}
-            <strong>alaeesmärgist 4 (säästev metsamajandus)</strong>{" "}
-            tegevuskavast.
-          </p>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+            gap: 18,
+            alignItems: "start",
+          }}
+        >
+          {HOT_TOPICS.map((topic) => (
+            <div className="panel" key={topic.id}>
+              <div className="topic-head">
+                <span className="topic-nr">{topic.nr}</span>
+                <h2 className="topic-title">{topic.pealkiri}</h2>
+              </div>
+              <p className="topic-body">{topic.sisu}</p>
+
+              <div className="section-title">
+                <h2>{topic.chartTitle}</h2>
+                {topic.chartHint && (
+                  <span className="hint">{topic.chartHint}</span>
+                )}
+              </div>
+
+              <TopicVisual chart={topic.chart} />
+
+              <p className="story-takeaway" style={{ marginTop: 12 }}>
+                Allikas:{" "}
+                <a href={topic.allikas.url} target="_blank" rel="noreferrer">
+                  {topic.allikas.nimi}
+                </a>
+                {topic.lisaallikas && (
+                  <>
+                    {" · "}
+                    <a
+                      href={topic.lisaallikas.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {topic.lisaallikas.nimi}
+                    </a>
+                  </>
+                )}
+              </p>
+            </div>
+          ))}
         </div>
 
         {/* ---- Sources ---- */}
@@ -345,9 +449,6 @@ export function SynthesisPage() {
             </a>
             <a className="back-btn" href="#/keskkond/1">
               🦌 Keskkonna lood
-            </a>
-            <a className="back-btn" href="#/teemad">
-              🔥 Olulised teemad
             </a>
             <a className="back-btn" href="#/">
               ← Avalehele

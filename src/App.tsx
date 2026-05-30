@@ -13,7 +13,6 @@ import { LandUseStory } from "./pages/loomad/LandUseStory";
 import { VegetationStory } from "./pages/loomad/VegetationStory";
 import { LoomadDock } from "./pages/loomad/LoomadDock";
 import { SynthesisPage } from "./pages/synthesis/SynthesisPage";
-import { HotTopicsPage } from "./pages/synthesis/HotTopicsPage";
 import { PitchPage } from "./pages/PitchPage";
 
 function useHashRoute(): string {
@@ -114,9 +113,6 @@ function App() {
   }
   if (hash === "#/sild") {
     return <SynthesisPage />;
-  }
-  if (hash === "#/teemad") {
-    return <HotTopicsPage />;
   }
   if (hash === "#/pitch") {
     return <PitchPage />;
