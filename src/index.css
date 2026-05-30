@@ -2466,3 +2466,106 @@ button.species-chip:hover {
     height: 38px;
   }
 }
+
+.pitch-slide {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+  background: var(--bg);
+}
+
+.pitch-inner {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.pitch-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.pitch-team {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6.5vw, 96px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.pitch-solution {
+  margin: 0;
+  max-width: 760px;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.4;
+  color: var(--text-dim);
+}
+
+.pitch-audience {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  background: #EAF6F8;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  max-width: 760px;
+}
+
+.pitch-audience-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  font-weight: 700;
+}
+
+.pitch-audience-value {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.pitch-people {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.pitch-person {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  padding: 8px 14px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+@media (max-width: 720px) {
+  .pitch-slide {
+    padding: 32px 20px;
+    align-items: flex-start;
+  }
+  .pitch-inner {
+    gap: 24px;
+  }
+  .pitch-person {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}

@@ -14,6 +14,7 @@ import { VegetationStory } from "./pages/loomad/VegetationStory";
 import { LoomadDock } from "./pages/loomad/LoomadDock";
 import { SynthesisPage } from "./pages/synthesis/SynthesisPage";
 import { HotTopicsPage } from "./pages/synthesis/HotTopicsPage";
+import { PitchPage } from "./pages/PitchPage";
 
 function useHashRoute(): string {
   const [hash, setHash] = useState(() => window.location.hash || "#/");
@@ -116,6 +117,9 @@ function App() {
   }
   if (hash === "#/teemad") {
     return <HotTopicsPage />;
+  }
+  if (hash === "#/pitch") {
+    return <PitchPage />;
   }
   return <LandingPage />;
 }
