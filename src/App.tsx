@@ -99,7 +99,7 @@ function App() {
   if (hash === "#/keskkond/4") {
     return (
       <>
-        <LandUseStory />
+        <VegetationStory />
         <LoomadDock currentIndex={3} />
       </>
     );
@@ -107,7 +107,7 @@ function App() {
   if (hash === "#/keskkond/5") {
     return (
       <>
-        <VegetationStory />
+        <Story04Conservation />
         <LoomadDock currentIndex={4} />
       </>
     );
@@ -115,7 +115,7 @@ function App() {
   if (hash === "#/keskkond/6") {
     return (
       <>
-        <Story04Conservation />
+        <LandUseStory />
         <LoomadDock currentIndex={5} />
       </>
     );

@@ -183,7 +183,7 @@ export function LandUseStory() {
         </div>
         <p className="story-takeaway" style={{ marginTop: 14 }}>
           Metsa enda kaitsest raie kõrval räägib lähemalt lugu{" "}
-          <a href="#/keskkond/6">„Mida saab teha"</a>.
+          <a href="#/keskkond/5">„Mida saab teha"</a>.
         </p>
       </div>
 

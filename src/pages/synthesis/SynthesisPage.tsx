@@ -55,16 +55,16 @@ const ENV_TOPICS = [
     href: "#/keskkond/3",
   },
   {
-    icon: "🌍",
-    title: "Maakasutuse muutus",
-    body: "Raie ei ole raadamine: raie järel mets taastub, raadamise järel saab maast põld või linn — elupaik kaob jäädavalt.",
-    href: "#/keskkond/4",
-  },
-  {
     icon: "🌿",
     title: "Taimestik",
     body: "Lageraie pöörab alustaimestiku pea peale: metsataimed taanduvad, pioneerid vohavad, mustikas taastub aeglaselt.",
-    href: "#/keskkond/5",
+    href: "#/keskkond/4",
+  },
+  {
+    icon: "🌍",
+    title: "Maakasutuse muutus",
+    body: "Raie ei ole raadamine: raie järel mets taastub, raadamise järel saab maast põld või linn — elupaik kaob jäädavalt.",
+    href: "#/keskkond/6",
   },
 ];
 
