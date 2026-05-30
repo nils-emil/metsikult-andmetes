@@ -35,7 +35,7 @@ export function Story01Growth() {
         <div>
           <h1 className="title">Kuidas mets kasvab</h1>
           <p className="subtitle">
-            Lugu 1 / 3 — sama hektar metsamaad 400 aasta jooksul.
+            Lugu 1 / 5 — sama hektar metsamaad 400 aasta jooksul.
           </p>
         </div>
       </header>

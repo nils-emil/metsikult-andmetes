@@ -45,7 +45,7 @@ export function Story04Strategy() {
         <div>
           <h1 className="title">Mis juhtub peale lageraiet</h1>
           <p className="subtitle">
-            Lugu 4 / 4 — Eesti metsanduse arengukava {MAK2030_OVERALL.period}{" "}
+            Lugu 5 / 5 — Eesti metsanduse arengukava {MAK2030_OVERALL.period}{" "}
             (MAK2030) väljundid: kuhu Eesti mets liigub raie järel ja kuidas
             seda mõõdetakse.
           </p>
