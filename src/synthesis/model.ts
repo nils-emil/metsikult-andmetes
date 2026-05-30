@@ -12,6 +12,7 @@ import {
   frameAtYear,
   suitabilityFor,
   type SuccessionFrame,
+  type Suitability,
 } from "../wildlife/habitat";
 import type {
   SpeciesId as WildlifeSpeciesId,
@@ -71,6 +72,65 @@ export function ecologyAtAge(age: number): EcologySnapshot {
     oldGrowthOptimalCount,
   };
 }
+
+/**
+ * Where a species can persist. Derived from its habitat suitability:
+ * "majandus" — thrives in managed-age forest, doesn't need old growth;
+ * "molemad"  — lives in both (managed forest works with retention structures);
+ * "kaitse"   — old-growth specialist, can't persist in managed forest at all.
+ */
+export type BalanceZone = "majandus" | "molemad" | "kaitse";
+
+/** Age classes a normal economic rotation actually produces. */
+const MANAGED_CLASSES: AgeClassId[] = ["raiesmik", "noorendik", "keskealine"];
+/** Old-growth classes a managed rotation clears before reaching. */
+const OLD_CLASSES: AgeClassId[] = ["vana", "vana_pluss"];
+/** Suitability ≥ this counts as "can actually live here", not just marginal. */
+const LIVES_THRESHOLD = 2;
+
+export interface SpeciesBalance {
+  species: WildlifeSpeciesId;
+  zone: BalanceZone;
+  /** Best suitability across managed-age classes (0–3). */
+  managedScore: Suitability;
+  /** Best suitability across old-growth classes (0–3). */
+  oldScore: Suitability;
+}
+
+function bestSuitability(
+  id: WildlifeSpeciesId,
+  classes: AgeClassId[],
+): Suitability {
+  return classes.reduce<Suitability>(
+    (m, c) => (suitabilityFor(id, c) > m ? suitabilityFor(id, c) : m),
+    0,
+  );
+}
+
+/** Classify every wildlife species into a managed/both/protection zone. */
+export const SPECIES_BALANCE: SpeciesBalance[] = (
+  Object.keys(WILDLIFE_SPECIES) as WildlifeSpeciesId[]
+).map((id) => {
+  const managedScore = bestSuitability(id, MANAGED_CLASSES);
+  const oldScore = bestSuitability(id, OLD_CLASSES);
+  const canManaged = managedScore >= LIVES_THRESHOLD;
+  const canOld = oldScore >= LIVES_THRESHOLD;
+  const zone: BalanceZone = canManaged
+    ? canOld
+      ? "molemad"
+      : "majandus"
+    : "kaitse";
+  return { species: id, zone, managedScore, oldScore };
+});
+
+export const BALANCE_ZONE_COUNT: Record<BalanceZone, number> =
+  SPECIES_BALANCE.reduce(
+    (acc, b) => {
+      acc[b.zone] += 1;
+      return acc;
+    },
+    { majandus: 0, molemad: 0, kaitse: 0 } as Record<BalanceZone, number>,
+  );
 
 export interface TradeoffPoint {
   age: number;
