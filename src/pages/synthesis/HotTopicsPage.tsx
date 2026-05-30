@@ -19,16 +19,21 @@ function TopicVisual({ chart }: { chart: HotTopic["chart"] }) {
   }
 }
 
-export function Story04HotTopics() {
+export function HotTopicsPage() {
   return (
     <div className="app">
+      <a className="back-btn" href="#/sild">
+        ← Tagasi kokkuvõttesse
+      </a>
+
       <header className="header">
         <div>
           <h1 className="title">Eesti metsa olulised teemad</h1>
           <p className="subtitle">
-            Lugu 4 / 5 — seitse vaidlust, mille üle praegu Eesti metsade kohta
-            kõige rohkem debatti käib. Iga teema kõrval on reaalsetel andmetel
-            põhinev visualiseering ja viide allikale.
+            Ühisosa — seitse vaidlust, mille üle praegu Eesti metsade kohta
+            kõige rohkem debatti käib. Need puudutavad mõlemat vaadet korraga.
+            Iga teema kõrval on reaalsetel andmetel põhinev visualiseering ja
+            viide allikale.
           </p>
         </div>
       </header>

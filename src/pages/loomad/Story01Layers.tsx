@@ -30,14 +30,20 @@ export function Story01Layers() {
         <div className="panel">
           <div className="section-title">
             <h2>{clearedView ? "Pärast lageraiet" : "Küps mets"}</h2>
-            <button
-              type="button"
-              className="sim-btn"
-              onClick={() => setClearedView((v) => !v)}
-            >
-              {clearedView ? "Näita küpset metsa" : "Näita lageraie järel"}
-            </button>
+            <label className="layer-toggle" data-on={clearedView}>
+              <span className="layer-toggle-label">Lageraie</span>
+              <input
+                type="checkbox"
+                role="switch"
+                checked={clearedView}
+                onChange={(e) => setClearedView(e.target.checked)}
+              />
+              <span className="layer-toggle-track" aria-hidden>
+                <span className="layer-toggle-thumb" />
+              </span>
+            </label>
           </div>
+
           <ForestLayersDiagram
             layers={layers}
             selectedLayer={selectedLayer}

@@ -15,10 +15,47 @@ import {
 } from "../../synthesis/model";
 import { WILDLIFE_SPECIES } from "../../data/wildlife";
 import type { SpeciesId as WildlifeSpeciesId } from "../../wildlife/species";
+import {
+  CONSERVATION_TOOLS,
+  TOOL_ICON,
+  type ToolId,
+} from "../../wildlife/conservation";
+import { ConservationToolGrid } from "../../components/ConservationToolGrid";
 import { TradeoffChart } from "../../components/TradeoffChart";
 import { fmtInt, fmtMoney } from "../../components/format";
 
 const ECOLOGY_MAX_YEAR = 100;
+
+/** The six conservation tools grouped into three balancing strategies. */
+const BALANCE_TIERS: {
+  icon: string;
+  title: string;
+  body: string;
+  tools: ToolId[];
+}[] = [
+  {
+    icon: "🛡️",
+    title: "Alad väljaspool majandust",
+    body: "Osa metsast võetakse raiest täielikult või suures osas välja — siia jäävad vana metsa liigid, mida ükski raievanus majandusmetsas ei taga.",
+    tools: ["natura2000", "puselupaik", "vaarielupaik"],
+  },
+  {
+    icon: "🪵",
+    title: "Struktuur jäetakse raie sisse",
+    body: "Majandatavas metsas säilitatakse vana metsa elemente — säilikpuud, surnud puit ja raiumata servad annavad liikidele tugipunktid läbi raieringi.",
+    tools: ["sailikpuud", "puhverribad"],
+  },
+  {
+    icon: "🪺",
+    title: "Raie ajastus",
+    body: "Tundlikel perioodidel raiet piiratakse, et mitte hävitada pesakondi siis, kui mets on hõivatud.",
+    tools: ["raierahu"],
+  },
+];
+
+const TOOL_LABEL: Record<ToolId, string> = Object.fromEntries(
+  CONSERVATION_TOOLS.map((t) => [t.id, t.label]),
+) as Record<ToolId, string>;
 
 export function SynthesisPage() {
   const [speciesId, setSpeciesId] = useState<SpeciesId>("spruce");
@@ -307,6 +344,76 @@ export function SynthesisPage() {
               </>
             )}
           </p>
+        </div>
+
+        <div className="panel">
+          <div className="section-title">
+            <h2>Kuidas tasakaal leitakse</h2>
+            <span className="hint">
+              Mitte üks raievanus kõikjal, vaid meetmete kogum
+            </span>
+          </div>
+          <p>
+            Liugur näitab, et üks raievanus ei rahulda korraga mõlemat vaadet:
+            raha tipneb vara, vana metsa elupaik jõuab kohale palju hiljem.
+            Eesti metsanduses ei lahendata seda ühe numbriga, vaid{" "}
+            <strong>maastiku tasandil</strong> — osa metsast jäetakse kaitse
+            alla, ülejäänut majandatakse leevendavate reeglitega.
+          </p>
+
+          <div className="balance-tiers">
+            {BALANCE_TIERS.map((tier) => (
+              <div className="balance-tier" key={tier.title}>
+                <div className="balance-tier-head">
+                  <span className="balance-tier-icon" aria-hidden>
+                    {tier.icon}
+                  </span>
+                  <h3>{tier.title}</h3>
+                </div>
+                <p>{tier.body}</p>
+                <div className="balance-tier-tools">
+                  {tier.tools.map((id) => (
+                    <span className="balance-tool-chip" key={id}>
+                      <span aria-hidden>{TOOL_ICON[id]}</span>
+                      {TOOL_LABEL[id]}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="section-title" style={{ marginTop: 22 }}>
+            <h3 style={{ margin: 0 }}>Kuus kaitsevahendit lähemalt</h3>
+            <span className="hint">Sama tööriistakast Loomade loost 4</span>
+          </div>
+          <ConservationToolGrid
+            tools={CONSERVATION_TOOLS}
+            speciesById={WILDLIFE_SPECIES}
+          />
+
+          <p className="story-takeaway" style={{ marginTop: 16 }}>
+            <strong>Kokkuvõte:</strong> raidur saab tulu majandusmetsast, loom
+            saab elupaiga kaitsealadest ja säilikstruktuuridest. Tasakaal pole
+            üks õige raievanus, vaid <strong>kasutuse ja kaitse jaotus</strong>{" "}
+            üle terve maastiku — kõik kuus vahendit kuuluvad MAK2030 alaeesmärki
+            2 (looduslik mitmekesisus) ja 4 (säästev metsamajandus).
+          </p>
+        </div>
+
+        <div className="panel">
+          <div className="section-title">
+            <h2>Olulised teemad</h2>
+            <span className="hint">Mõlemat vaadet puudutav ühisosa</span>
+          </div>
+          <p>
+            Raie ümber käib praegu mitu suurt vaidlust — kaitsetasemed,
+            raiemaht, süsiniku sidumine, omandistruktuur — ja need ei kuulu
+            kummalegi vaatele eraldi, vaid puudutavad mõlemat korraga.
+          </p>
+          <a className="back-btn" href="#/teemad">
+            🔥 Eesti metsa olulised teemad →
+          </a>
         </div>
 
         <div className="panel">

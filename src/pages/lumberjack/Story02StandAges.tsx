@@ -32,7 +32,7 @@ export function Story02StandAges() {
         <div>
           <h1 className="title">Eesti metsa vanuseklassid</h1>
           <p className="subtitle">
-            Lugu 2 / 5 — kogu Eesti puistute pindala vanuseklasside ja
+            Lugu 3 / 5 — kogu Eesti puistute pindala vanuseklasside ja
             puuliikide kaupa, SMI 2023.
           </p>
         </div>

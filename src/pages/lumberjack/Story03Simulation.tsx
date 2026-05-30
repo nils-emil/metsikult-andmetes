@@ -92,7 +92,7 @@ export function Story03Simulation() {
         <div>
           <h1 className="title">Eesti metsa simulatsioon</h1>
           <p className="subtitle">
-            Lugu 3 / 5 — mis juhtub Eesti metsavaruga eri raiemahtude juures,
+            Lugu 4 / 5 — mis juhtub Eesti metsavaruga eri raiemahtude juures,
             100 aasta jooksul. Algtagavara ~{STARTING_VOLUME_LABEL_MM3} M m³
             (SMI 2023).
           </p>

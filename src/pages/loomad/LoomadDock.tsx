@@ -7,9 +7,9 @@ export function LoomadDock({ currentIndex }: { currentIndex: number }) {
     currentIndex < total - 1 ? LOOMAD_STEPS[currentIndex + 1] : null;
 
   const prevHref = prevStep ? prevStep.hash : "#/";
-  const nextHref = nextStep ? nextStep.hash : "#/";
+  const nextHref = nextStep ? nextStep.hash : "#/sild";
   const prevLabel = prevStep ? "← Eelmine" : "← Avalehele";
-  const nextLabel = nextStep ? "Edasi →" : "Lõpeta →";
+  const nextLabel = nextStep ? "Edasi →" : "Kokkuvõte →";
 
   return (
     <nav className="story-dock" aria-label="Loo navigeerimine">

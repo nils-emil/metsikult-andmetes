@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { LandingPage } from "./pages/LandingPage";
+import { HarvestPlanStory } from "./pages/lumberjack/HarvestPlanStory";
 import { Story01Growth } from "./pages/lumberjack/Story01Growth";
 import { Story02StandAges } from "./pages/lumberjack/Story02StandAges";
 import { Story03Simulation } from "./pages/lumberjack/Story03Simulation";
-import { Story04HotTopics } from "./pages/lumberjack/Story04HotTopics";
 import { Story04Strategy } from "./pages/lumberjack/Story04Strategy";
 import { StoryDock } from "./pages/lumberjack/StoryDock";
 import { Story01Layers } from "./pages/loomad/Story01Layers";
@@ -12,6 +12,7 @@ import { Story03Succession } from "./pages/loomad/Story03Succession";
 import { Story04Conservation } from "./pages/loomad/Story04Conservation";
 import { LoomadDock } from "./pages/loomad/LoomadDock";
 import { SynthesisPage } from "./pages/synthesis/SynthesisPage";
+import { HotTopicsPage } from "./pages/synthesis/HotTopicsPage";
 
 function useHashRoute(): string {
   const [hash, setHash] = useState(() => window.location.hash || "#/");
@@ -32,7 +33,7 @@ function App() {
   if (hash === "#/raidur" || hash === "#/raidur/1") {
     return (
       <>
-        <Story01Growth />
+        <HarvestPlanStory />
         <StoryDock currentIndex={0} />
       </>
     );
@@ -40,7 +41,7 @@ function App() {
   if (hash === "#/raidur/2") {
     return (
       <>
-        <Story02StandAges />
+        <Story01Growth />
         <StoryDock currentIndex={1} />
       </>
     );
@@ -48,7 +49,7 @@ function App() {
   if (hash === "#/raidur/3") {
     return (
       <>
-        <Story03Simulation />
+        <Story02StandAges />
         <StoryDock currentIndex={2} />
       </>
     );
@@ -56,7 +57,7 @@ function App() {
   if (hash === "#/raidur/4") {
     return (
       <>
-        <Story04HotTopics />
+        <Story03Simulation />
         <StoryDock currentIndex={3} />
       </>
     );
@@ -103,6 +104,9 @@ function App() {
   }
   if (hash === "#/sild") {
     return <SynthesisPage />;
+  }
+  if (hash === "#/teemad") {
+    return <HotTopicsPage />;
   }
   return <LandingPage />;
 }
