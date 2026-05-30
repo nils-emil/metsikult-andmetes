@@ -44,6 +44,9 @@ export function Story01Growth() {
         <div className="panel">
           <div className="section-title">
             <h2>Kuidas mets kasvab</h2>
+            <span className="hint">
+              Näide: kuusk, keskmine boniteet — tegelik kasv sõltub puuliigist ja kasvukohast
+            </span>
           </div>
           <GrowthChart data={series} showRotationMark={false} showMai={false} />
           <div className="legend">
@@ -65,7 +68,12 @@ export function Story01Growth() {
         </div>
 
         <div className="panel story-panel">
-          <h2>400 aastat sama metsamaad</h2>
+          <div className="section-title">
+            <h2>400 aastat sama metsamaad</h2>
+            <span className="hint">
+              Lihtsustatud näide — tegelik tulemus sõltub puuliigist, boniteedist ja majandamisest
+            </span>
+          </div>
           <p>
             Sama hektar metsa. Kui sama metsa raida iga {STORY_AGE_A},{" "}
             {STORY_AGE_B} või {STORY_AGE_C} aasta tagant, on 400 aasta
