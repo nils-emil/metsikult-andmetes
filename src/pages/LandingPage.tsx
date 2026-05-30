@@ -1,16 +1,6 @@
 export function LandingPage() {
   return (
     <div className="landing">
-      <header className="landing-top">
-        <div className="landing-top-inner">
-          <div className="landing-brand">
-            <span className="landing-brand-mark" aria-hidden>🌲</span>
-            <span>Eesti mets — andmevaade</span>
-          </div>
-          <span className="landing-meta">SMI 2023 · MAK2030</span>
-        </div>
-      </header>
-
       <section className="landing-hero">
         <span className="landing-eyebrow">Metsa perspektiivid</span>
         <h1 className="landing-headline">
@@ -57,37 +47,6 @@ export function LandingPage() {
             Ava vaade <span className="cta-arrow">→</span>
           </span>
         </a>
-      </section>
-
-      <section className="landing-stats" aria-label="Eesti metsa põhinäitajad">
-        <div>
-          <div className="landing-stat-label">Metsamaad Eestis</div>
-          <div className="landing-stat-value">
-            51<span className="kpi-unit">%</span>
-          </div>
-          <div className="landing-stat-sub">pindalast (SMI 2023)</div>
-        </div>
-        <div>
-          <div className="landing-stat-label">Tagavara</div>
-          <div className="landing-stat-value">
-            489<span className="kpi-unit"> mln m³</span>
-          </div>
-          <div className="landing-stat-sub">üldine kasvav tagavara</div>
-        </div>
-        <div>
-          <div className="landing-stat-label">Aastane juurdekasv</div>
-          <div className="landing-stat-value">
-            16<span className="kpi-unit"> mln m³/a</span>
-          </div>
-          <div className="landing-stat-sub">keskmine kasv</div>
-        </div>
-        <div>
-          <div className="landing-stat-label">Range kaitse all</div>
-          <div className="landing-stat-value">
-            16<span className="kpi-unit">%</span>
-          </div>
-          <div className="landing-stat-sub">metsamaast (MAK2030)</div>
-        </div>
       </section>
     </div>
   );
