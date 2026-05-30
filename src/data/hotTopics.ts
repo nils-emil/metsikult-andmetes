@@ -188,7 +188,7 @@ export const HOT_TOPICS: HotTopic[] = [
   {
     id: "elurikkus",
     nr: 7,
-    pealkiri: "Elurikkuse kaotus",
+    pealkiri: "Elurikkuse kaotus ja killustatus",
     sisu:
       "Raiemahtude kasv on metsi noorendanud ja killustanud. Vanametsaliigid kannatavad: must-toonekure ja kassikaku arvukus on langenud alla 100 haudepaari ning metsis on pikaajalises languses. Kanakulli uuring näitab elupaiga lõhet — liik pesitseb keskmiselt 101 aasta vanuses metsas, kuid ümbritseva maastiku metsa keskmine vanus on vaid 56 aastat.",
     chartTitle: "Kanakulli pesamets vs. ümbritsev maastik",

@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { SpeciesAgeMatrix } from "../../components/SpeciesAgeMatrix";
 import { SpeciesDetailCard } from "../../components/SpeciesDetailCard";
+import { TopicBars } from "../../components/TopicBars";
+import { HOT_TOPICS } from "../../data/hotTopics";
 import {
   HABITAT,
   suitabilityColor,
@@ -21,6 +23,9 @@ export function Story02SpeciesAge() {
     [],
   );
   const selectedRow = HABITAT.find((r) => r.species === selected)!;
+  const elurikkus = HOT_TOPICS.find((t) => t.id === "elurikkus")!;
+  const elurikkusBars =
+    elurikkus.chart.kind === "bars" ? elurikkus.chart : null;
 
   return (
     <div className="app">
@@ -90,6 +95,48 @@ export function Story02SpeciesAge() {
           Põder on erand: tema toidubaas on raiesmikul ja noorendikul.{" "}
           <strong>Mida vanem mets, seda suurem liigirikkus</strong> — see on
           põhjus, miks 60+ aastaste metsade pindala on liigikaitse võti.
+        </p>
+      </div>
+
+      <div className="panel" style={{ marginTop: 18 }}>
+        <div className="topic-head">
+          <span className="topic-nr">{elurikkus.nr}</span>
+          <h2 className="topic-title">{elurikkus.pealkiri}</h2>
+        </div>
+        <p className="topic-body">{elurikkus.sisu}</p>
+
+        <div className="section-title">
+          <h2>{elurikkus.chartTitle}</h2>
+          {elurikkus.chartHint && (
+            <span className="hint">{elurikkus.chartHint}</span>
+          )}
+        </div>
+
+        {elurikkusBars && (
+          <TopicBars
+            data={elurikkusBars.data}
+            unit={elurikkusBars.unit}
+            yLabel={elurikkusBars.yLabel}
+          />
+        )}
+
+        <p className="story-takeaway" style={{ marginTop: 12 }}>
+          Allikas:{" "}
+          <a href={elurikkus.allikas.url} target="_blank" rel="noreferrer">
+            {elurikkus.allikas.nimi}
+          </a>
+          {elurikkus.lisaallikas && (
+            <>
+              {" · "}
+              <a
+                href={elurikkus.lisaallikas.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {elurikkus.lisaallikas.nimi}
+              </a>
+            </>
+          )}
         </p>
       </div>
     </div>
