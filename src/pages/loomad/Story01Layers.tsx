@@ -125,7 +125,8 @@ export function Story01Layers() {
           lamapuit kaovad korraga. Need kihid taastuvad eri kiirusel:{" "}
           <strong>rohurinne aastatega</strong>, võra ja alusmets{" "}
           <strong>aastakümnetega</strong>, päris lamapuit{" "}
-          <strong>sajandiga</strong>. Sellele kulgemisele vaata 3. loos.
+          <strong>sajandiga</strong>. Raiutud puit ise kannab edasi süsinikku —
+          mis sellega juhtub, vaata 3. loos.
         </p>
       </div>
     </div>

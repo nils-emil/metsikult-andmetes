@@ -8,7 +8,7 @@ import { Story04Strategy } from "./pages/lumberjack/Story04Strategy";
 import { StoryDock } from "./pages/lumberjack/StoryDock";
 import { Story01Layers } from "./pages/loomad/Story01Layers";
 import { Story02SpeciesAge } from "./pages/loomad/Story02SpeciesAge";
-import { Story03Succession } from "./pages/loomad/Story03Succession";
+import { Story03Carbon } from "./pages/loomad/Story03Carbon";
 import { Story04Conservation } from "./pages/loomad/Story04Conservation";
 import { LoomadDock } from "./pages/loomad/LoomadDock";
 import { SynthesisPage } from "./pages/synthesis/SynthesisPage";
@@ -89,7 +89,7 @@ function App() {
   if (hash === "#/loomad/3") {
     return (
       <>
-        <Story03Succession />
+        <Story03Carbon />
         <LoomadDock currentIndex={2} />
       </>
     );

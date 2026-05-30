@@ -61,15 +61,16 @@ export function LandingPage() {
         <a
           className="landing-side animal-side"
           href="#/loomad"
-          aria-label="Vaata loomade perspektiivist"
+          aria-label="Vaata elurikkuse ja süsiniku perspektiivist"
         >
           <Floaters items={ANIMAL_FLOATERS} />
           <div className="landing-content">
             <div className="landing-emoji landing-emoji-bounce" aria-hidden>🦌</div>
             <p className="landing-tagline">Vaata sellest perspektiivist</p>
-            <h2 className="landing-title">Loomad</h2>
+            <h2 className="landing-title">Elurikkus ja süsinik</h2>
             <p className="landing-sub">
-              Elupaik, varjualune, toit. Mida raie metsa elanikele tähendab.
+              Mets kui elupaik liikidele ja hoidla süsinikule. Mida raie
+              tähendab elustikule ja kliimale.
             </p>
             <span className="landing-cta">
               Ava see vaade <span className="cta-arrow">→</span>
