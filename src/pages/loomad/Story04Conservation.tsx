@@ -48,7 +48,7 @@ export function Story04Conservation() {
           <strong>alaeesmärgist 2 (looduslik mitmekesisus)</strong> ja{" "}
           <strong>alaeesmärgist 4 (säästev metsamajandus)</strong>{" "}
           tegevuskavast. Loomavaade lõpeb siin, kuid raidurivaade jätkab
-          strateegia 12 prioriteetse probleemiga — vaata <a href="#/raidur/5">
+          sellega, mis juhtub pärast lageraiet — vaata <a href="#/raidur/5">
           Raiduri lugu 5
           </a>. Mõlemad vaated kohtuvad lõpuks ühel skaalal:{" "}
           <a href="#/sild">Otsusta ise: kaks vaadet, üks raievanus</a>.
